@@ -25,7 +25,7 @@ To get started with this project, follow these steps:
    npm run dev
    ```
 
-4. Open another terminal window by pressing `Ctrl + Shift + \`
+4. Open another terminal window by pressing `Ctrl + Shift + `\`
 
 5. Navigate to the `client` directory and install the dependencies by running the following command:
 
