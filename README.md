@@ -27,7 +27,7 @@ To get started with this project, follow these steps:
 
 4. Open another terminal window by pressing 
    ```
-   Ctrl + Shift + \`
+   Ctrl + Shift + `
    ```
 
 5. Navigate to the `client` directory and install the dependencies by running the following command:
