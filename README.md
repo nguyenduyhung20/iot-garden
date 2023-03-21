@@ -44,6 +44,7 @@ To get started with this project, follow these steps:
    ```
 
 7. Open your web browser and go to `http://localhost:3000` to see the web application.
+8. Open Postman and go to `http://localhost:5000` to test web server.
 
 ## Project Structure
 
