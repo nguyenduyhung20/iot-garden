@@ -49,7 +49,7 @@ To get started with this project, follow these steps:
 ## Project Structure
 
 This project is structured as follows:
-
+```
 my-project/  
 ├── client/  
 │   ├── src/  
