@@ -31,4 +31,4 @@ const Garden = {
 - `updateGarden`: updates a record in the `tbl_garden` table with the given `garden_ID`, `garden_Location`, `garden_Status`, `garden_name`, `garden_decl`, `garden_area`, and `url`.
  */
 	
-	module.exports = Garden;
+module.exports = Garden;

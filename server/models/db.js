@@ -1,19 +1,20 @@
 const mysql = require('mysql');
 const config = require('../config')
 
-// Create a connection to the MySQL database using the configuration settings in the config file
 const connection = mysql.createConnection(config.db);
 
-// Connect to the database
 connection.connect((err)=>{
-    // If there's an error, log it to the console
     if (err){
         console.log('Error connecting to database:', err);
     } else {
-        // If there's no error, log a success message to the console
         console.log('Connected to database');
     }
 });
 
-// Export the connection object
+// connection.query('SELECT * FROM tbl_user', (err, rows, fields) => {
+//     if (err) throw err
+  
+//     console.log('The solution is: ', rows[0])
+// });
+
 module.exports = connection;
