@@ -50,27 +50,27 @@ To get started with this project, follow these steps:
 
 This project is structured as follows:
 
-my-project/
-├── client/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── App.js
-│   │   ├── index.js
-│   │   └── ...
-│   ├── public/
-│   ├── package.json
-│   └── ...
-├── server/
-│   ├── models/
-│   │   └── db.js
-│   ├── routes/
-│   │   ├── user.js
-│   │   └── ...
-│   ├── controllers/
-│   ├── server.js
-│   ├── package.json
-│   └── ...
-└── package.json
+my-project/  
+├── client/  
+│   ├── src/  
+│   │   ├── components/  
+│   │   ├── App.js  
+│   │   ├── index.js  
+│   │   └── ...  
+│   ├── public/  
+│   ├── package.json  
+│   └── ...  
+├── server/  
+│   ├── models/  
+│   │   └── db.js  
+│   ├── routes/  
+│   │   ├── user.js  
+│   │   └── ...  
+│   ├── controllers/   
+│   ├── server.js  
+│   ├── package.json  
+│   └── ...  
+└── package.json  
 ```
 
 Here's a brief explanation of each directory and file:
