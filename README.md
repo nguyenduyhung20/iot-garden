@@ -44,13 +44,55 @@ To get started with this project, follow these steps:
    ```
 
 7. Open your web browser and go to `http://localhost:3000` to see the web application.
+8. Open Postman and go to `http://localhost:5000` to test web server.
 
 ## Project Structure
 
 This project is structured as follows:
+```
+my-project/  
+├── client/  
+│   ├── src/  
+│   │   ├── components/  
+│   │   ├── App.js  
+│   │   ├── index.js  
+│   │   └── ...  
+│   ├── public/  
+│   ├── package.json  
+│   └── ...  
+├── server/  
+│   ├── models/  
+│   │   └── db.js  
+│   ├── routes/  
+│   │   ├── user.js  
+│   │   └── ...  
+│   ├── controllers/   
+│   ├── server.js  
+│   ├── package.json  
+│   └── ...  
+└── package.json  
+```
 
-- `client`: This directory contains the React front-end code.
-- `server`: This directory contains the Node.js back-end code.
+Here's a brief explanation of each directory and file:
+
+- `client/`: This directory contains the React client-side code.
+  - `src/`: This directory contains the source code for the React app.
+    - `components/`: This directory contains the reusable UI components.
+    - `App.js`: This file is the root component of the React app.
+    - `index.js`: This file is the entry point of the React app.
+  - `public/`: This directory contains the static assets (e.g. images, fonts) for the React app.
+  - `package.json`: This file contains the dependencies and scripts for the React app.
+
+- `server/`: This directory contains the Node.js server-side code.
+  - `models/`: This directory contains the database models.
+    - `db.js`: This file contains the database connection code.
+  - `routes/`: This directory contains the route handlers.
+    - `user.js`: This file contains the route handler for the `/user` endpoint.
+  - `controllers/`: This directory contains the business logic for the app.
+  - `server.js`: This file is the entry point of the Node.js app.
+  - `package.json`: This file contains the dependencies and scripts for the Node.js app.
+
+- `package.json`: This file contains the dependencies and scripts for the entire project.
 
 ## Contributing
 
