@@ -4,7 +4,7 @@ const connection = require('../models/db')
 
 router.get('/user', (req, res) => {
     // Send a query to the database to retrieve all rows from the tbl_user table
-    connection.query('SELECT * FROM tbl_user', (err, rows, fields) => {
+    connection.query('SELECT * FROM tbl_user', (err, rows) => {
         // If there's an error, throw it
         if (err) {
             console.log('Error retrieving data from database:', err);
