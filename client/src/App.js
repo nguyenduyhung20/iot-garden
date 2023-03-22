@@ -1,29 +1,15 @@
 import React, {useEffect, useState} from 'react'
+import LatestMessage from './components/LatestMessage'
 
+//we are using a simple polling mechanism to fetch the latest message every 5 seconds
 function App() {
-  const [backendData, setBackendData] = useState([{}])
 
-  useEffect(()=>{
-    fetch("/api").then(
-      response => response.json()
-    ).then(
-      data => {
-        setBackendData(data)
-      }
-    )
-  }, [])
+	return (
 
-  return (
-    <div>
-      {(typeof backendData.users === 'undefined') ? (
-        <p>Loading ... Please wait </p>
-      ) : (
-        backendData.users.map((user, i) => (
-          <p key = {i}>{user}</p>
-        ))
-      )}
-    </div>
-  )
+		<div>
+			<LatestMessage />
+		</div>
+	)
 }
 
 export default App
