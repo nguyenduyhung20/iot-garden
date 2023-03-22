@@ -1,18 +1,11 @@
-import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+import React  from 'react';
 
-function LatestMessage() {
-    const [message, setMessage] = useState('');
-    useEffect(()=> {
-        axios.get('/latest-message')
-        .then(response => setMessage(response.data.message))
-        .catch(error => console.log(error));
-    }, []);
-    console.log('Latest message:', message);
+function LatestMessage(props) {
+    console.log('Latest message:', props.message);
     return(
-        <div>
+        <div key={props.message}>
             <h1>Latest Message</h1>
-            <p>{message}</p>
+            <p>{props.message}</p>
         </div>
     );
 }
