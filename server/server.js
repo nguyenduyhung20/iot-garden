@@ -13,4 +13,5 @@ app.get("/api/test", (req, res) => {
 //Test router
 app.use("/", userRouter);
 
+//Test MQTT 
 const server = app.listen(PORT, () => {console.log( `Server started on port ${PORT} `)});
