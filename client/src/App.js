@@ -22,6 +22,8 @@ function App() {
 	return (
 		<div>
 			<LatestMessage message={message}/>
+			<LatestMessage message={message}/>
+			<LatestMessage message={message}/>
 		</div>
 	)
 }
