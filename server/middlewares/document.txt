@@ -1,0 +1,13 @@
+Middleware is a function that sits between the client and the server and performs some 
+operations on the incoming request or outgoing response. In the context of web development, 
+middleware functions are used to add additional functionality to the server, such as 
+authentication, logging, error handling, and more.
+
+In the case of Node.js and Express, middleware functions are functions that have access 
+to the `request` and `response` objects, and the `next` function in the application's 
+request-response cycle. They can modify the request and response objects, or terminate 
+the request-response cycle by sending a response to the client.
+
+Middleware functions can be used globally for all routes, or for specific routes or 
+groups of routes. They can be defined using the `app.use()` method, or as a parameter 
+to a specific route or group of routes.
