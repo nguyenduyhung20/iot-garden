@@ -6,6 +6,10 @@ const app = express();
 
 const PORT = 5000;
 
+// Body parser middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
 //Test api
 app.get("/api/test", (req, res) => {
     res.json({"users": ["userOne", "userTwo", "userThree"]});
