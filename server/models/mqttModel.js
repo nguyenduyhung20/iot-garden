@@ -1,26 +1,55 @@
 const mqtt = require('mqtt');
 //const connection = require('./models/db');
 
-console.log('Setting up username and password!');
-const client = mqtt.connect('mqtt://io.adafruit.com', {
-    username: 'dhung',
-    password: 'aio_SsFq102rQATLTKKzL4Xg6w9IRTkL'
-});
 
-let latestMessage = '';
+// const client = mqtt.connect('mqtt://io.adafruit.com', {
+//     username: 'dhung',
+//     password: 'aio_SsFq102rQATLTKKzL4Xg6w9IRTkL'
+// });
+
+
+let latestMessages = {
+    pump: null,
+    air_temperature: null,
+    air_humid: null,
+    soil_moisture: null
+};
+
+
+console.log('Setting up username and password!');
+const client = mqtt.connect('mqtt://mqtt.ohstem.vn', {
+    username: 'IOTGARDEN222',
+    password: ''
+});
 
 console.log('Connecting to Adafruit IO!');
 client.on('connect', () => {
     console.log('Connected to Adafruit IO MQTT Broker');
-    client.subscribe('dhung/feeds/testsensor');
+    client.subscribe('IOTGARDEN222/feeds/V3'); // Air temperature
+    client.subscribe('IOTGARDEN222/feeds/V4'); // Air humid
+    client.subscribe('IOTGARDEN222/feeds/V5'); // Soil moisture
+    client.subscribe('IOTGARDEN222/feeds/V1'); // Pump
+    console.log('Subcribed');
 });
 
 client.on('message', (topic, message) => {
+
     const data = JSON.parse(message.toString());
     const timestamp = new Date().toISOString().slice(0, 19).replace('T', ' ');
-    const values = { sensor: topic.split('/').pop(), value: data, timestamp};
-    latestMessage = data;
-    // console.log('This is topic:',topic,'\nThis is message:', message);
+    let sensor = topic.split('/').pop();
+    latestMessages[sensor] = data;
+    const values = { sensor: sensor, value: data, timestamp};
+    if (sensor == 'V1') {
+      sensor = 'pump';
+    } else if (sensor == 'V3') {
+      sensor = 'air_temperature';
+    } else if (sensor == 'V4') {
+      sensor = 'air_humid';
+    } else if (sensor == 'V5') {
+      sensor = 'soil_moisture';
+    }
+    latestMessages[sensor] = data;
+    console.log('This is sensor:',sensor);
     console.log('This is data:',data);
     // console.log('This is timestamp:',timestamp);
     // console.log('This is values:', values);
@@ -31,7 +60,7 @@ client.on('error', (error) => {
 });
 
 module.exports = {
-    getLatestMessage: ()=> latestMessage
+    getLatestMessages: ()=> latestMessages
 };
 /**
  * This code connects to the Adafruit IO MQTT broker and subscribes to the feed.

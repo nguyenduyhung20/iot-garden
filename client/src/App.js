@@ -13,7 +13,6 @@ function App() {
 			axios.get('/latest-message')
 			.then(response => setMessage(response.data.message))
 			.catch(error => console.log(error));
-
 	}, 5000);
 	return ()=> clearInterval(intervalID);
 }, []);
@@ -21,9 +20,10 @@ function App() {
 
 	return (
 		<div>
-			<LatestMessage message={message}/>
-			<LatestMessage message={message}/>
-			<LatestMessage message={message}/>
+			<LatestMessage message={message.pump}/>
+			<LatestMessage message={message.air_temperature}/>
+			<LatestMessage message={message.air_humid}/>
+			<LatestMessage message={message.soil_moisture}/>
 		</div>
 	)
 }
