@@ -1,0 +1,26 @@
+.container__box{
+    background-color: #5eb7a5;
+    width: 20rem;
+    height: 2.5rem;
+    border-radius: 10px;
+    justify-content: space-between;
+    align-self: flex-end;
+    .content__container{
+        display: flex;
+        
+        .image__container{
+            height: 7rem;
+            border-radius: 5px;
+        }
+    }
+    .update__content{
+        text-align-last: center;
+        color: #edf5e1;
+    }
+}
+.btn-block:hover,.container__box:hover{
+    cursor: pointer;
+    background-color:#71b6a8;
+}
+
+    

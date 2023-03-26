@@ -1,0 +1,19 @@
+.container__box{
+    background-color: white;
+    width: 15rem;
+    border-radius: 10px;
+    .content__container{
+        display: flex;
+        
+        .image__container{
+            height: 7rem;
+            border-radius: 5px;
+        }
+    }
+    .update__content{
+        text-align-last: center;
+        margin-inline-start: 25px;
+
+    }
+
+}
