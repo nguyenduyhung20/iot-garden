@@ -36,15 +36,15 @@ CREATE TABLE tbl_garden (
     FOREIGN KEY (`garden_OwnerID`) REFERENCES tbl_user(`user_ID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 
-CREATE TABLE tbl_amdat (
-    `amdat_ID` int(11) NOT NULL AUTO_INCREMENT,
-    `amdat_Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `amdat_Value` varchar(255) NOT NULL,
-    `amdat_GardenID` int(11) NOT NULL,
-    `amdat_Status` varchar(150) NOT NULL,
-    `amdat_IDcheck` varchar(150) NOT NULL,
-    PRIMARY KEY (`amdat_ID`),
-    FOREIGN KEY (`amdat_GardenID`) REFERENCES tbl_garden(`garden_ID`)
+CREATE TABLE tbl_soil_moisture (
+    `soil_moisture_ID` int(11) NOT NULL AUTO_INCREMENT,
+    `soil_moisture_Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `soil_moisture_Value` varchar(255) NOT NULL,
+    `soil_moisture_GardenID` int(11) NOT NULL,
+    `soil_moisture_Status` varchar(150) NOT NULL,
+    `soil_moisture_check_status` varchar(150) NOT NULL,
+    PRIMARY KEY (`soil_moisture_ID`),
+    FOREIGN KEY (`soil_moisture_GardenID`) REFERENCES tbl_garden(`garden_ID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 
 CREATE TABLE tbl_condition (
@@ -58,17 +58,27 @@ CREATE TABLE tbl_condition (
     FOREIGN KEY (`condition_GardenID`) REFERENCES tbl_garden(`garden_ID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 
-CREATE TABLE tbl_dht11 (
+CREATE TABLE tbl_dht20 (
     `dht_ID` int(11) NOT NULL AUTO_INCREMENT,
     `dht_Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `dht_Temp` varchar(255) NOT NULL,
     `dht_Humid` varchar(255) NOT NULL,
     `dht_Status` varchar(150) NOT NULL,
     `dht_GardenID` int(11) NOT NULL,
-    `dht_IDcheck` varchar(150) NOT NULL,
+    `dht_check_status` varchar(150) NOT NULL,
     PRIMARY KEY (`dht_ID`),
     FOREIGN KEY (`dht_GardenID`) REFERENCES tbl_garden(`garden_ID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+CREATE TABLE tbl_water_pump (
+    `water_pump_ID` int(11) NOT NULL AUTO_INCREMENT,
+    `water_pump_Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `water_pump_Status` varchar(150) NOT NULL,
+    `water_pump_GardenID` int(11) NOT NULL,
+    `water_pump_check_status` varchar(150),
+    PRIMARY KEY (`water_pump_ID`),
+    FOREIGN KEY (`water_pump_GardenID`) REFERENCES tbl_garden(`garden_ID`)
+)ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 
 CREATE TABLE tbl_light (
     `light_ID` int(11) NOT NULL AUTO_INCREMENT,
@@ -81,14 +91,6 @@ CREATE TABLE tbl_light (
     FOREIGN KEY (`light_GardenID`) REFERENCES tbl_garden(`garden_ID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 
-CREATE TABLE tbl_relay (
-    `relay_ID` int(11) NOT NULL AUTO_INCREMENT,
-    `relay_Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `relay_Value` varchar(50) NOT NULL,
-    `relay_GardenID` int(11) NOT NULL,
-    PRIMARY KEY (`relay_ID`),
-    FOREIGN KEY (`relay_GardenID`) REFERENCES tbl_garden(`garden_ID`)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 
 INSERT INTO tbl_user (user_Name, user_Username, user_Password, user_Address, user_Email, user_Phone) VALUES 
 ('John Doe', 'johndoe', 'password', '123 Main St, Anytown USA', 'johndoe@example.com', '555-1234'),

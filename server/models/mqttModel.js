@@ -22,9 +22,9 @@ const client = mqtt.connect('mqtt://mqtt.ohstem.vn', {
     password: ''
 });
 
-console.log('Connecting to Adafruit IO!');
+console.log('Connecting to Ohstem!');
 client.on('connect', () => {
-    console.log('Connected to Adafruit IO MQTT Broker');
+    console.log('Connected to Ohstem MQTT Broker');
     client.subscribe('IOTGARDEN222/feeds/V3'); // Air temperature
     client.subscribe('IOTGARDEN222/feeds/V4'); // Air humid
     client.subscribe('IOTGARDEN222/feeds/V5'); // Soil moisture
