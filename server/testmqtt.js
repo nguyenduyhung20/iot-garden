@@ -24,16 +24,33 @@ const client = mqtt.connect('mqtt://mqtt.ohstem.vn', {
     password: ''
 });
 
+// console.log('Connecting to Adafruit IO!');
+// client.on('connect', () => {
+//     console.log('Connected to Adafruit IO MQTT Broker');
+//     client.subscribe('IOTGARDEN222/feeds/V3'); // Air temperature
+//     client.subscribe('IOTGARDEN222/feeds/V4'); // Air humid
+//     client.subscribe('IOTGARDEN222/feeds/V5'); // Soil moisture
+//     client.subscribe('IOTGARDEN222/feeds/V1'); // Pump
+//     console.log('Subcribed');
+// });
+
 console.log('Connecting to Adafruit IO!');
 client.on('connect', () => {
     console.log('Connected to Adafruit IO MQTT Broker');
-    client.subscribe('IOTGARDEN222/feeds/V3'); // Air temperature
-    client.subscribe('IOTGARDEN222/feeds/V4'); // Air humid
-    client.subscribe('IOTGARDEN222/feeds/V5'); // Soil moisture
-    client.subscribe('IOTGARDEN222/feeds/V1'); // Pump
-    console.log('Subcribed');
-});
+    // client.subscribe('IOTGARDEN222/feeds/V3'); // Air temperature
+    // client.subscribe('IOTGARDEN222/feeds/V4'); // Air humid
+    // client.subscribe('IOTGARDEN222/feeds/V5'); // Soil moisture
+    // client.subscribe('IOTGARDEN222/feeds/V1'); // Pump
+    // console.log('Subcribed');
+    setInterval(() => {
+      const data = JSON.stringify(1);
+      client.publish('IOTGARDEN222/feeds/V1', data);
+      console.log('sent', data);
+      client.publish('IOTGARDEN222/feeds/V1', data);
+      console.log('sent', data);
+    }, 5000);
 
+});
 // // sent data
 // client.on('connect', () => {
 //   console.log('Connected to Adafruit IO MQTT broker');
@@ -45,24 +62,24 @@ client.on('connect', () => {
 //   }, 5000);
 // });
 
-client.on('message', (topic, message) => {
-  const data = JSON.parse(message.toString());
-  const timestamp = new Date().toISOString().slice(0, 19).replace('T', ' ');
-  let sensor = topic.split('/').pop();
-  const values = { sensor: sensor, value: data, timestamp};
-  if (sensor == 'V1') {
-    sensor = 'Pump';
-  } else if (sensor == 'V3') {
-    sensor = 'Air temperature';
-  } else if (sensor == 'V4') {
-    sensor = 'Air humid';
-  } else if (sensor == 'V5') {
-    sensor = 'Soil moisture';
-  }
-  console.log('This is sensor:',sensor);
-  console.log('This is data:',data);
-  //console.log(`Received message on topic ${topic}: ${message.toString()}`);
-});
+// client.on('message', (topic, message) => {
+//   const data = JSON.parse(message.toString());
+//   const timestamp = new Date().toISOString().slice(0, 19).replace('T', ' ');
+//   let sensor = topic.split('/').pop();
+//   const values = { sensor: sensor, value: data, timestamp};
+//   if (sensor == 'V1') {
+//     sensor = 'Pump';
+//   } else if (sensor == 'V3') {
+//     sensor = 'Air temperature';
+//   } else if (sensor == 'V4') {
+//     sensor = 'Air humid';
+//   } else if (sensor == 'V5') {
+//     sensor = 'Soil moisture';
+//   }
+//   console.log('This is sensor:',sensor);
+//   console.log('This is data:',data);
+//   //console.log(`Received message on topic ${topic}: ${message.toString()}`);
+// });
 
 client.on('error', (error) => {
   console.error('Error connecting to Adafruit IO MQTT broker:', error);

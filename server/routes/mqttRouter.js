@@ -1,10 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const mqttModel = require('../models/mqttModel');
+const mqttController = require('../controllers/mqttController')
 
-router.get('/latest-message', (req, res) => {
-    const latestMessage = mqttModel.getLatestMessages();
-    res.json({ message: latestMessage });
-  });
+router.get('/latest-message', mqttController.getLatestMessage);
 
 module.exports = router;

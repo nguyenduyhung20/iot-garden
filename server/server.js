@@ -1,5 +1,5 @@
 const express = require('express')
-const userRouter = require('./routes/userRouter')
+// const userRouter = require('./routes/userRouter')
 const mqttRouter = require('./routes/mqttRouter')
 const bodyParser = require('body-parser');
 const app = express();
@@ -15,8 +15,8 @@ app.get("/api/test", (req, res) => {
     res.json({"users": ["userOne", "userTwo", "userThree"]});
 });
 
-//Test router
-app.use("/", userRouter);
+// //Test router
+// app.use("/", userRouter);
 
 //Test MQTT 
 app.use("/", mqttRouter);

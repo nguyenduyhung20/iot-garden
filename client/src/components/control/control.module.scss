@@ -1,6 +1,6 @@
 .container__box{
     background-color: white;
-    width: 15rem;
+    width: 16rem;
     border-radius: 10px;
     .content__container{
         display: flex;
@@ -11,8 +11,8 @@
         }
     }
     .update__content{
-        text-align-last: center;
-        margin-inline-start: 25px;
+        text-align: center;
+        margin-inline-start: 1em;
 
     }
 

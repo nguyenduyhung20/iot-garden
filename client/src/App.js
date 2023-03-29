@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import classes from "./App.module.scss";
-import LatestMessage from "./components/LatestMessage";
 import axios from "axios";
 import NavBar from "./components/navbar";
 import Control from "./components/control";
@@ -26,26 +25,26 @@ function App() {
     {
       img: images.temp,
       name: "Nhiệt độ",
-      num: message.pump,
+      num: message.air_temperature,
     },
     {
       img: images.humid,
       name: "Độ ẩm",
-      num: message.air_temperature,
+      num: message.air_humid,
     },
     {
-      img: images.light,
-      name: "Ánh sáng",
-      num: message.air_humid,
+      img: images.humid,
+      name: "Độ ẩm đất",
+      num: message.soil_moisture,
     },
     {
       img: images.user,
       name: "User",
-      num: message.soil_moisture,
+      num: 0,
     },
   ];
 
-  const arr_graph = ["NHIỆT ĐỘ", "ĐỘ ẨM", "ÁNH SÁNG"];
+  const arr_graph = ["NHIỆT ĐỘ", "ĐỘ ẨM", "ĐỘ ẨM ĐẤT"];
   return (
     <div  className={classes["main-content"]}>
       <NavBar />
@@ -60,7 +59,7 @@ function App() {
         </div>
           <div className={classes["graph-container"]}>
             <div className={classes["graph-content"]}>
-              <img className={classes["image-item"]} src={images.gr_temp}></img>
+              <img className={classes["image-item"]} src={images.gr_temp} alt=""></img>
             </div>
             <div className={classes.style}>
               {arr_graph.map(data => (
