@@ -89,7 +89,7 @@ const User = {
 			};
 		});
 	},
-	getUserByName: function(name) {
+	getUserByUsername: function(name) {
 		// return db.query('SELECT * FROM tbl_user WHERE user_Username = ?', callback);
 		return new Promise((resolve, reject) => {
 			db.query('SELECT * FROM tbl_user WHERE user_Username = ?', [name], (err, rows) => {
@@ -107,6 +107,7 @@ const User = {
 			db.query('INSERT INTO tbl_user (user_Name, user_Username, user_Password) VALUES (?, ?, ?)', [user.user_Name, user.user_Username, user.user_Password],
 			(err, result) => {
 				if (err) {
+					console.error(err);
 					reject(err);
 				} else {
 					console.log(result);
