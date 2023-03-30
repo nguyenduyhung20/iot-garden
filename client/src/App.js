@@ -4,6 +4,8 @@ import axios from "axios";
 import NavBar from "./components/navbar";
 import HomeScreen from "./components/HomeScreen";
 
+// Sadly we use polling mechanism, will use socket.io next time
+
 function App() {
   const [message, setMessage] = useState("");
 
