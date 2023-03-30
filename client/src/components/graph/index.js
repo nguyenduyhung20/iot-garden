@@ -15,13 +15,13 @@ import classes from "./graph.module.scss";
 
 function Graph({ name }) {
   return (
-    <a className={classes["btn-block"]}>
+    <div className={classes["btn-block"]}>
       <div className={classes.container__box}>
         <div>
           <h2 className={classes.update__content}>{name}</h2>
         </div>
       </div>
-    </a>
+    </div>
   );
 }
 

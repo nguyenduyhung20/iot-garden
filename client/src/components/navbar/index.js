@@ -9,9 +9,7 @@ import {
   faMobile,
 } from "@fortawesome/free-solid-svg-icons";
 
-//import { Link } from "react-router-dom";
-
-export default function () {
+function Navbar() {
   const obj = [
     {
       heading: "HOME",
@@ -36,7 +34,7 @@ export default function () {
         <div className={classes["avt"]}>
           <img
             src={image}
-            alt="Ảnh nền"
+            alt="Logo"
             className={classes["background"]}
           ></img>
         </div>
@@ -45,7 +43,7 @@ export default function () {
       <ul className={classes["navbar__list"]}>
         {obj.map((item, idx) => (
           <li
-            key={idx}
+            key={`navbar-item-${idx}`}
             className={`${classes["navbar__item"]} 
                      ${classes["navbar__item--actived"]}`}
           >
@@ -71,3 +69,5 @@ export default function () {
     </div>
   );
 }
+
+export default Navbar;
