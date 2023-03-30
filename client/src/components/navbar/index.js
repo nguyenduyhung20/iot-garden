@@ -8,8 +8,16 @@ import {
   faHome,
   faMobile,
 } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
-function Navbar() {
+function Navbar({onLogOut}) {
+  const navigate = useNavigate();
+  //Handle logout
+  const handleLogOut = () => {
+    onLogOut()
+    navigate('/login')
+  }
+
   const obj = [
     {
       heading: "HOME",
@@ -57,7 +65,7 @@ function Navbar() {
           </li>
         ))}
         <li className={classes["end"]}>
-          <div className={classes["navbar__item"]}>
+          <div className={classes["navbar__item"]} onClick={handleLogOut}>
             <FontAwesomeIcon
               className={classes["navbar__item-icon"]}
               icon={faArrowRightFromBracket}

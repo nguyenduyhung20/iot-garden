@@ -1,23 +1,30 @@
 import React, {useState} from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Input from "./Input";
 import CheckBox from "./CheckBox";
 
-function Login(props) {
+function Login({onLogin}) {
 	const [username, setUsername] = useState('');
 	const [password,setPassword] = useState('');
 	const [rememberMe, setRememberMe] = useState(false);
+	const navigate = useNavigate();
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		axios.post('/api/v1/login', {username, password, rememberMe})
 		.then(response => {
 			localStorage.setItem('token', response.data.token);
-			props.history.push('/home');
+			onLogin();
+			navigate('/dashboard')
 		})
 		.catch(error => console.error(error));
 	};
 
+	const handleSignUp = (event) => {
+		event.preventDefault()
+		navigate('/signup')
+	}
 	return (
 		<div>
 			<h1>Login</h1>
@@ -42,8 +49,13 @@ function Login(props) {
 					label="Remember me:"
 				/>
 				<br/>
-				<button type="submit">Login</button>
+				<div>
+					<button type="button" onClick={handleSignUp}>Sign Up</button>
+					<button type="submit">Login</button>
+				</div>
+				
 			</form>
+			
 		</div>
 	);
 
