@@ -1,12 +1,4 @@
 const mqtt = require('mqtt');
-//const connection = require('./models/db');
-
-
-// const client = mqtt.connect('mqtt://io.adafruit.com', {
-//     username: 'dhung',
-//     password: 'aio_SsFq102rQATLTKKzL4Xg6w9IRTkL'
-// });
-
 
 let latestMessages = {
     pump: null,
@@ -62,6 +54,8 @@ client.on('error', (error) => {
 module.exports = {
     getLatestMessages: ()=> latestMessages
 };
+
+
 /**
  * This code connects to the Adafruit IO MQTT broker and subscribes to the feed.
  */

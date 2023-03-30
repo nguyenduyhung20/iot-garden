@@ -89,11 +89,12 @@ const User = {
 			};
 		});
 	},
-	getUserByName: function(name) {
+	getUserByUsername: function(name) {
 		// return db.query('SELECT * FROM tbl_user WHERE user_Username = ?', callback);
 		return new Promise((resolve, reject) => {
 			db.query('SELECT * FROM tbl_user WHERE user_Username = ?', [name], (err, rows) => {
 				if (err) {
+					console.error(err);
 					reject(err);
 				} else {
 					resolve(rows[0]);
@@ -101,15 +102,15 @@ const User = {
 			});
 		});
 	},
-	createUser: function (user) {
-		console.log(user.user_Name, user.user_Username, user.user_Password);
+	createUser: function (name, username, hash) {
 		return new Promise((resolve, reject) => {
-			db.query('INSERT INTO tbl_user (user_Name, user_Username, user_Password) VALUES (?, ?, ?)', [user.user_Name, user.user_Username, user.user_Password],
+			db.query('INSERT INTO tbl_user (user_Name, user_Username, user_Password) VALUES (?, ?, ?)', [name, username, hash],
 			(err, result) => {
 				if (err) {
+					console.error(err);
 					reject(err);
 				} else {
-					console.log(result);
+					// console.log(result);
 					resolve(result.insertId);
 				}
 			});
