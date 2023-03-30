@@ -2,12 +2,8 @@ import React, { useEffect, useState } from "react";
 import classes from "./App.module.scss";
 import axios from "axios";
 import NavBar from "./components/navbar";
-import Control from "./components/control";
-import images from "./assets/images";
-import Graph from "./components/graph";
-// we are using a simple polling mechanism to fetch the latest message every 5 seconds
-// A better approach would be to use a real-time communication protocol like WebSockets
-// to receive updates from the server as soon as they happen.
+import HomeScreen from "./components/HomeScreen";
+
 function App() {
   const [message, setMessage] = useState("");
 
@@ -21,58 +17,12 @@ function App() {
     return () => clearInterval(intervalID);
   }, []);
 
-  let arr = [
-    {
-      img: images.temp,
-      name: "Nhiệt độ",
-      num: message.air_temperature,
-    },
-    {
-      img: images.humid,
-      name: "Độ ẩm",
-      num: message.air_humid,
-    },
-    {
-      img: images.humid,
-      name: "Độ ẩm đất",
-      num: message.soil_moisture,
-    },
-    {
-      img: images.user,
-      name: "User",
-      num: 0,
-    },
-  ];
-
-  const arr_graph = ["NHIỆT ĐỘ", "ĐỘ ẨM", "ĐỘ ẨM ĐẤT"];
   return (
-    <div  className={classes["main-content"]}>
+    <div className={classes["main-content"]}>
       <NavBar />
-      <div>
-        <div>
-          <h1>WELLCOME TO GREEN GARDEN!</h1>
-        </div>
-        <div  className={classes["control-container"]}    >
-          {arr.map(data => (
-            <Control image={data.img} num={data.num} name={data.name} />
-          ))}
-        </div>
-          <div className={classes["graph-container"]}>
-            <div className={classes["graph-content"]}>
-              <img className={classes["image-item"]} src={images.gr_temp} alt=""></img>
-            </div>
-            <div className={classes.style}>
-              {arr_graph.map(data => (
-                <Graph name={data} />
-              ))}
-            </div>
-          </div>
-      </div>
+      <HomeScreen message={message} />
     </div>
   );
 }
 
 export default App;
-
-
-

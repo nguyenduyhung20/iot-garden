@@ -6,7 +6,7 @@ function Control({ image, name, num }) {
       <div className={classes.container__box}>
         <div className={classes.content__container}>
           <div>
-            <img className={classes.image__container} src={image} />
+            <img className={classes.image__container} src={image} alt=""/>
           </div>
           <div>
             <h3 className={classes.update__content}>{name}</h3>
