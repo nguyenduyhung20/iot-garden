@@ -49,10 +49,9 @@ function App() {
 	return (
 	<Router>
 		<div className={classes["main-content"]}>
-
+			{loggedIn && <NavBar onLogOut={logout}/>}
 			{loggedIn !== null &&(
 			<Routes>
-				{loggedIn && <NavBar onLogOut={logout}/>}
 				<Route
 					path="/dashboard"
 					element={loggedIn ? <HomeScreen message={message}/> : <Navigate to="/login"/>}
