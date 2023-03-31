@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Input from './Input';
 
@@ -7,13 +8,14 @@ function SignUp(props) {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
+	const navigate = useNavigate()
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		axios.post('/api/v1/signup', { name, username, password })
 			.then(response => {
 				localStorage.setItem('token', response.data.token);
-				props.history.push('/home');
+				navigate('/login');
 			})
 			.catch(error => console.error(error));
 	};
