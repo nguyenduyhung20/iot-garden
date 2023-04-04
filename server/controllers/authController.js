@@ -55,6 +55,7 @@ const signUpAuthenticate = (req, res) => {
             console.log('Hashing...')
             userModel.createUser(name, username, hash)
             .then(id => {
+                console.log('Creating garden')
                 return gardenController.createDefaultGarden(id)
                 .then(() => {
                     const token = jwt.sign({id, username}, secret);

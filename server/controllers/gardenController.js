@@ -10,6 +10,7 @@ const createDefaultGarden = (userId) => {
             garden_Area: 0,
             url: 'Default'
         };
+        console.log('Adding garden to database');
         gardenModel.addGarden(defaultGarden, (err, result) => {
             if (err) {
                 reject(err);
