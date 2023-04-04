@@ -55,7 +55,3 @@ module.exports = {
     getLatestMessages: ()=> latestMessages
 };
 
-
-/**
- * This code connects to the Adafruit IO MQTT broker and subscribes to the feed.
- */
