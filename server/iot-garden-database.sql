@@ -61,7 +61,6 @@ CREATE TABLE tbl_dht20 (
     `dht_Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `dht_Temp` varchar(255) NOT NULL,
     `dht_Humid` varchar(255) NOT NULL,
-    `dht_Status` varchar(150) NOT NULL,
     `dht_GardenID` int(11) NOT NULL,
     PRIMARY KEY (`dht_ID`),
     FOREIGN KEY (`dht_GardenID`) REFERENCES tbl_garden(`garden_ID`)
@@ -70,7 +69,7 @@ CREATE TABLE tbl_dht20 (
 CREATE TABLE tbl_water_pump (
     `water_pump_ID` int(11) NOT NULL AUTO_INCREMENT,
     `water_pump_Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `water_pump_Status` varchar(150) NOT NULL,
+    `water_pump_Value` varchar(255) NOT NULL,
     `water_pump_GardenID` int(11) NOT NULL,
     PRIMARY KEY (`water_pump_ID`),
     FOREIGN KEY (`water_pump_GardenID`) REFERENCES tbl_garden(`garden_ID`)

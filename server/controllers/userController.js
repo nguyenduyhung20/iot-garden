@@ -1,4 +1,6 @@
 const User = require('../models/userModel')
+const gardenModel = require('../models/gardenModel')
+const sensorModel = require('../models/sensorModel')
 
 const getAllUsers = (req, res) => {
     // Send a query to the database to retrieve all rows from the tbl_user table
@@ -91,11 +93,34 @@ const getUserByUsername = (req, res) => {
     });
 }
 
+const getUserGardenData = (req, res) => {
+    const userId = req.user.id;
+
+    gardenModel.getGardenByOwnerId(userId)
+    .then((garden) => {
+        if (!garden) {
+            res.status(404).json({error: 'Garden not found'});
+        } else {
+            sensorModel.getSensorDataByGardenId(garden.garden_ID)
+            .then((sensorData) => {
+                res.json({garden, sensorData});
+            }).catch((err) => {
+                console.log('Error getting sensor data:', err);
+                res.status(500).json({error: 'Internal Server Error'});
+            });
+        }
+    }).catch((err) => {
+        console.log('Error getting garden:', err);
+        res.status(500).json({ error: 'Internal Server Error' });        
+    });
+}
+
 module.exports = {
     getAllUsers,
     getUserById,
     createUser,
     deleteUser,
     updateUser,
-    getUserByUsername
+    getUserByUsername,
+    getUserGardenData,
 };
