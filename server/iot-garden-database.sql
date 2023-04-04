@@ -27,7 +27,7 @@ CREATE TABLE tbl_admin (
 CREATE TABLE tbl_garden (
     `garden_ID` int(11) NOT NULL AUTO_INCREMENT,
     `garden_OwnerID` int(11) NOT NULL,
-    `garden_Location` varchar(255) NOT NULL,
+    `garden_Location` varchar(255) DEFAULT NULL,
     `garden_Name` varchar(150) DEFAULT NULL,
     `garden_Description` varchar(250) DEFAULT NULL,
     `garden_Area` decimal(10, 2) DEFAULT NULL,

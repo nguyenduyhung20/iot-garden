@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const userModel = require('../models/userModel')
+const gardenController = require('../controllers/gardenController')
 
 const secret = 'doge';
 
@@ -54,8 +55,11 @@ const signUpAuthenticate = (req, res) => {
             console.log('Hashing...')
             userModel.createUser(name, username, hash)
             .then(id => {
-                const token = jwt.sign({id, username}, secret);
-                res.json({token});
+                return gardenController.createDefaultGarden(id)
+                .then(() => {
+                    const token = jwt.sign({id, username}, secret);
+                    res.json({token});
+                });
             })
             .catch(error => {
                 console.log(error);
