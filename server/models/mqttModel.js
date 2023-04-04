@@ -41,10 +41,8 @@ client.on('message', (topic, message) => {
       sensor = 'soil_moisture';
     }
     latestMessages[sensor] = data;
-    console.log('This is sensor:',sensor);
-    console.log('This is data:',data);
-    // console.log('This is timestamp:',timestamp);
-    // console.log('This is values:', values);
+    console.log('This is sensor ',sensor, ": ", data);
+
 });
 
 client.on('error', (error) => {

@@ -7,6 +7,7 @@ CREATE TABLE tbl_user (
     `user_Name` varchar(255) NOT NULL,
     `user_Username` varchar(255) NOT NULL,
     `user_Password` varchar(255) NOT NULL,
+    `user_Role` enum('USER', 'ADMIN') NOT NULL DEFAULT 'USER',
     `user_Address` varchar(50) DEFAULT NULL,
     `user_Email` varchar(255) DEFAULT NULL,
     `user_Phone` varchar(255) DEFAULT NULL,
@@ -27,11 +28,10 @@ CREATE TABLE tbl_garden (
     `garden_ID` int(11) NOT NULL AUTO_INCREMENT,
     `garden_OwnerID` int(11) NOT NULL,
     `garden_Location` varchar(255) NOT NULL,
-    `garden_Status` varchar(150) NOT NULL,
-    `garden_name` varchar(150) NOT NULL,
-    `garden_decl` varchar(250) NOT NULL,
-    `garden_area` decimal(10, 2) NOT NULL,
-    `url` varchar(250) DEFAULT NULL,
+    `garden_Name` varchar(150) DEFAULT NULL,
+    `garden_Description` varchar(250) DEFAULT NULL,
+    `garden_Area` decimal(10, 2) DEFAULT NULL,
+    `garden_Image` varchar(250) DEFAULT NULL,
     PRIMARY KEY (`garden_ID`),
     FOREIGN KEY (`garden_OwnerID`) REFERENCES tbl_user(`user_ID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
@@ -41,8 +41,6 @@ CREATE TABLE tbl_soil_moisture (
     `soil_moisture_Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `soil_moisture_Value` varchar(255) NOT NULL,
     `soil_moisture_GardenID` int(11) NOT NULL,
-    `soil_moisture_Status` varchar(150) NOT NULL,
-    `soil_moisture_check_status` varchar(150) NOT NULL,
     PRIMARY KEY (`soil_moisture_ID`),
     FOREIGN KEY (`soil_moisture_GardenID`) REFERENCES tbl_garden(`garden_ID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
@@ -65,7 +63,6 @@ CREATE TABLE tbl_dht20 (
     `dht_Humid` varchar(255) NOT NULL,
     `dht_Status` varchar(150) NOT NULL,
     `dht_GardenID` int(11) NOT NULL,
-    `dht_check_status` varchar(150) NOT NULL,
     PRIMARY KEY (`dht_ID`),
     FOREIGN KEY (`dht_GardenID`) REFERENCES tbl_garden(`garden_ID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
@@ -75,7 +72,6 @@ CREATE TABLE tbl_water_pump (
     `water_pump_Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `water_pump_Status` varchar(150) NOT NULL,
     `water_pump_GardenID` int(11) NOT NULL,
-    `water_pump_check_status` varchar(150),
     PRIMARY KEY (`water_pump_ID`),
     FOREIGN KEY (`water_pump_GardenID`) REFERENCES tbl_garden(`garden_ID`)
 )ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
@@ -85,8 +81,6 @@ CREATE TABLE tbl_light (
     `light_Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `light_Value` varchar(255) NOT NULL,
     `light_GardenID` int(11) NOT NULL,
-    `light_Status` varchar(150) NOT NULL,
-    `light_IDcheck` varchar(150) NOT NULL,
     PRIMARY KEY (`light_ID`),
     FOREIGN KEY (`light_GardenID`) REFERENCES tbl_garden(`garden_ID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
