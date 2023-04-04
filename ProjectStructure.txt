@@ -1,0 +1,70 @@
+.
+├── client
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── README.md
+│   ├── src
+│   │   ├── App.js
+│   │   ├── App.module.scss
+│   │   ├── App.test.js
+│   │   ├── index.css
+│   │   ├── index.js
+│   │   ├── logo.svg
+│   │   ├── reportWebVitals.js
+│   │   ├── setupTests.js
+│   │   ├── assets
+│   │   │   └── images
+│   │   │       ├── graph_temp.png
+│   │   │       ├── humid.jpg
+│   │   │       ├── index.js
+│   │   │       ├── light.jpg
+│   │   │       ├── temp.png
+│   │   │       └── user.jpg
+│   │   └── components
+│   │       ├── CheckBox.js
+│   │       ├── HomeScreen.js
+│   │       ├── Input.js
+│   │       ├── LatestMessage.js
+│   │       ├── Login.js
+│   │       ├── Profile.js
+│   │       ├── Setting.js
+│   │       ├── SignUp.js
+│   │       └── UserData.js
+│   ├── control
+│   │   ├── control.module.scss
+│   │   └── index.js
+│   ├── graph
+│   │   ├── graph.module.scss
+│   │   └── index.js
+│   ├── login
+│   ├── navbar
+│   │   ├── LOGO.png
+│   │   ├── index.js
+│   │   └── navbar.module.scss
+│   └── public
+│       ├── favicon.ico
+│       ├── index.html
+│       └── manifest.json
+└── server
+    ├── .env
+    ├── config.js
+    ├── iot-garden-database.sql
+    ├── package-lock.json
+    ├── package.json
+    ├── server.js
+    ├── testmqtt.js
+    ├── controllers
+    │   ├── authController.js
+    │   ├── mqttController.js
+    │   └── userController.js
+    ├── middlewares
+    │   └── authMiddleware.js
+    └── models
+    │   ├── db.js
+    │   ├── gardenModel.js
+    │   ├── mqttModel.js
+    │   └── userModel.js
+    └── routes
+        ├── authRouter.js
+        ├── mqttRouter.js
+        └── userRouter.js
