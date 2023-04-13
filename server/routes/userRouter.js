@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController')
+const authMiddleware = require('../middlewares/authMiddleware')
 
 
 // Test router
@@ -26,6 +27,9 @@ router.put('/:id', userController.updateUser)
 
 // Get user by name
 router.get('/getname/:name', userController.getUserByUsername);
+
+// Get user's garden data
+router.get('/garden/data', authMiddleware, userController.getUserGardenData)
 
 
 module.exports = router;

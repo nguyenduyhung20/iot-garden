@@ -1,10 +1,18 @@
 const mqtt = require('mqtt');
+const sensorController = require('../controllers/sensorController')
+
+const brokerName = 'Ohstem MQTT Broker'
 
 let latestMessages = {
     pump: null,
     air_temperature: null,
     air_humid: null,
     soil_moisture: null
+};
+
+let dhtBuffer = {
+  air_temperature: null,
+  air_humid: null
 };
 
 
@@ -30,7 +38,7 @@ client.on('message', (topic, message) => {
     const timestamp = new Date().toISOString().slice(0, 19).replace('T', ' ');
     let sensor = topic.split('/').pop();
     latestMessages[sensor] = data;
-    const values = { sensor: sensor, value: data, timestamp};
+    const values = { timeStamp: timestamp, value: data, gardenId: 1};
     if (sensor == 'V1') {
       sensor = 'pump';
     } else if (sensor == 'V3') {
@@ -40,22 +48,36 @@ client.on('message', (topic, message) => {
     } else if (sensor == 'V5') {
       sensor = 'soil_moisture';
     }
+
+    if (sensor === 'air_temperature' || sensor === 'air_humid') {
+      //console.log('Data from DHT20')
+      dhtBuffer[sensor] = values;
+      if (dhtBuffer.air_temperature && dhtBuffer.air_humid) {
+        sensorController.insertDht20Data(dhtBuffer.air_temperature, dhtBuffer.air_humid)
+        .then(insertId => {
+          console.log(`Inserted DHT20 data with ID: ${insertId}`);
+          dhtBuffer.air_temperature = null;
+          dhtBuffer.air_humid = null;
+        })
+        .catch(err => console.error('Error inserting DHT20 data: ', err));
+      }
+    } else {
+      //console.log('Data from other sensor')
+      sensorController.insertSensorData(sensor, values)
+      .then(insertId =>  console.log(`Inserted ${sensor} data with ID: ${insertId}`))
+      .catch(err => console.error(`Error inserting ${sensor} data: `, err))
+    }
+
     latestMessages[sensor] = data;
-    console.log('This is sensor:',sensor);
-    console.log('This is data:',data);
-    // console.log('This is timestamp:',timestamp);
-    // console.log('This is values:', values);
+    console.log('This is sensor ',sensor, ": ", data);
+
 });
 
 client.on('error', (error) => {
-    console.error('Error connecting to Adafruit IO MQTT broker:', error);
+    console.error(`Error connecting to ${brokerName}:`, error);
 });
 
 module.exports = {
     getLatestMessages: ()=> latestMessages
 };
 
-
-/**
- * This code connects to the Adafruit IO MQTT broker and subscribes to the feed.
- */
