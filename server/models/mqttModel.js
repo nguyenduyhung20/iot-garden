@@ -50,7 +50,7 @@ client.on('message', (topic, message) => {
     }
 
     if (sensor === 'air_temperature' || sensor === 'air_humid') {
-      console.log('Data from DHT20')
+      //console.log('Data from DHT20')
       dhtBuffer[sensor] = values;
       if (dhtBuffer.air_temperature && dhtBuffer.air_humid) {
         sensorController.insertDht20Data(dhtBuffer.air_temperature, dhtBuffer.air_humid)
@@ -62,7 +62,7 @@ client.on('message', (topic, message) => {
         .catch(err => console.error('Error inserting DHT20 data: ', err));
       }
     } else {
-      console.log('Data from other sensor')
+      //console.log('Data from other sensor')
       sensorController.insertSensorData(sensor, values)
       .then(insertId =>  console.log(`Inserted ${sensor} data with ID: ${insertId}`))
       .catch(err => console.error(`Error inserting ${sensor} data: `, err))

@@ -1,6 +1,6 @@
 const db = require('./db')
 
-const insertSoilMoisture = function(data) {
+const insertSoilMoisture = function (data) {
     return new Promise((resolve, reject) => {
         const query = 'INSERT INTO tbl_soil_moisture (soil_moisture_Time, soil_moisture_Value, soil_moisture_GardenID) VALUE (?, ?, ?)';
         db.query(query, [data.timeStamp, data.value, data.gardenId], (err, result) => {
@@ -14,7 +14,7 @@ const insertSoilMoisture = function(data) {
     });
 };
 
-const insertDht20 = function(data) {
+const insertDht20 = function (data) {
     return new Promise((resolve, reject) => {
         const query = 'INSERT INTO tbl_dht20 (dht_Time, dht_Temp, dht_Humid, dht_GardenID) VALUE (?, ?, ?, ?)';
         db.query(query, [data.timeStamp, data.temp, data.humid, data.gardenId], (err, result) => {
@@ -28,7 +28,7 @@ const insertDht20 = function(data) {
     });
 };
 
-const insertWaterPump = function(data) {
+const insertWaterPump = function (data) {
     return new Promise((resolve, reject) => {
         const query = 'INSERT INTO tbl_water_pump (water_pump_Time, water_pump_Value, water_pump_GardenID) VALUE (?, ?, ?)';
         db.query(query, [data.timeStamp, data.value, data.gardenId], (err, result) => {
@@ -42,7 +42,7 @@ const insertWaterPump = function(data) {
     });
 };
 
-const getSensorDataByGardenId = function(gardenId) {
+const getSensorDataByGardenId = function (gardenId, limit) {
     return new Promise((resolve, reject) => {
         const query = `
             SELECT
@@ -58,8 +58,9 @@ const getSensorDataByGardenId = function(gardenId) {
             JOIN tbl_dht20 d ON s.soil_moisture_GardenID = d.dht_GardenID
             JOIN tbl_water_pump w ON s.soil_moisture_GardenID = w.water_pump_GardenID
             WHERE
-                s.soil_moisture_GardenID = ? AND d.dht_GardenID = ? AND w.water_pump_GardenID = ?`;
-        db.query(query, [gardenId, gardenId, gardenId], (err, result) => {
+                s.soil_moisture_GardenID = ? AND d.dht_GardenID = ? AND w.water_pump_GardenID = ?
+            LIMIT ?`;
+        db.query(query, [gardenId, gardenId, gardenId, limit], (err, result) => {
             if (err) {
                 console.error(err);
                 reject(err);

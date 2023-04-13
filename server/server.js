@@ -2,6 +2,7 @@ const express = require('express')
 const userRouter = require('./routes/userRouter')
 const mqttRouter = require('./routes/mqttRouter')
 const authRouter = require('./routes/authRouter')
+const sensorRouter = require('./routes/sensorRouter')
 const bodyParser = require('body-parser');
 const app = express();
 
@@ -20,10 +21,13 @@ app.get("/api/test", (req, res) => {
 // User router
 app.use("/api/v1/users", userRouter);
 
-//Test MQTT 
+// MQTT router
 app.use("/", mqttRouter);
 
 // Login SignUp route
 app.use('/api/v1', authRouter);
+
+// Sensor route
+app.use('/api/v1', sensorRouter);
 
 const server = app.listen(PORT, () => {console.log( `Server started on port ${PORT} `)});
