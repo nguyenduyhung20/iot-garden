@@ -1,50 +1,35 @@
 const db = require('./db')
 
-const insertSoilMoisture = function (data) {
+const executeQuery = (query, param) => {
     return new Promise((resolve, reject) => {
-        const query = 'INSERT INTO tbl_soil_moisture (soil_moisture_Time, soil_moisture_Value, soil_moisture_GardenID) VALUE (?, ?, ?)';
-        db.query(query, [data.timeStamp, data.value, data.gardenId], (err, result) => {
+        db.query(query, param, (err, result) => {
             if (err) {
                 console.error(err);
                 reject(err);
             } else {
-                resolve(result.insertId);
+                resolve(result);
             }
-        });
-    });
+        })
+    })
+}
+
+const insertSoilMoisture = function (data) {
+    const query = 'INSERT INTO tbl_soil_moisture (soil_moisture_Time, soil_moisture_Value, soil_moisture_GardenID) VALUE (?, ?, ?)';
+    executeQuery(query, [data.timeStamp, data.value, data.gardenId]);
 };
 
 const insertDht20 = function (data) {
-    return new Promise((resolve, reject) => {
-        const query = 'INSERT INTO tbl_dht20 (dht_Time, dht_Temp, dht_Humid, dht_GardenID) VALUE (?, ?, ?, ?)';
-        db.query(query, [data.timeStamp, data.temp, data.humid, data.gardenId], (err, result) => {
-            if (err) {
-                console.error(err);
-                reject(err);
-            } else {
-                resolve(result.insertId);
-            }
-        });
-    });
+    const query = 'INSERT INTO tbl_dht20 (dht_Time, dht_Temp, dht_Humid, dht_GardenID) VALUE (?, ?, ?, ?)';
+    executeQuery(query, [data.timeStamp, data.temp, data.humid, data.gardenId]);
 };
 
 const insertWaterPump = function (data) {
-    return new Promise((resolve, reject) => {
-        const query = 'INSERT INTO tbl_water_pump (water_pump_Time, water_pump_Value, water_pump_GardenID) VALUE (?, ?, ?)';
-        db.query(query, [data.timeStamp, data.value, data.gardenId], (err, result) => {
-            if (err) {
-                console.error(err);
-                reject(err);
-            } else {
-                resolve(result.insertId);
-            }
-        });
-    });
+    const query = 'INSERT INTO tbl_water_pump (water_pump_Time, water_pump_Value, water_pump_GardenID) VALUE (?, ?, ?)';
+    executeQuery(query, [data.timeStamp, data.value, data.gardenId]);
 };
 
 const getSensorDataByGardenId = function (gardenId, limit) {
-    return new Promise((resolve, reject) => {
-        const query = `
+    const query = `
             SELECT
                 s.soil_moisture_Time AS soil_moisture_Time,
                 s.soil_moisture_Value AS soil_moisture_Value,
@@ -60,15 +45,7 @@ const getSensorDataByGardenId = function (gardenId, limit) {
             WHERE
                 s.soil_moisture_GardenID = ? AND d.dht_GardenID = ? AND w.water_pump_GardenID = ?
             LIMIT ?`;
-        db.query(query, [gardenId, gardenId, gardenId, limit], (err, result) => {
-            if (err) {
-                console.error(err);
-                reject(err);
-            } else {
-                resolve(result);
-            }
-        });
-    });
+    executeQuery(query, [gardenId, gardenId, gardenId, limit]);
 };
 
 module.exports = {
