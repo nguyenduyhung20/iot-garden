@@ -37,15 +37,6 @@ CREATE TABLE tbl_garden (
     FOREIGN KEY (`garden_OwnerID`) REFERENCES tbl_user(`user_ID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 
-CREATE TABLE tbl_soil_moisture (
-    `soil_moisture_ID` int(11) NOT NULL AUTO_INCREMENT,
-    `soil_moisture_Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `soil_moisture_Value` varchar(255) NOT NULL,
-    `soil_moisture_GardenID` int(11) NOT NULL,
-    PRIMARY KEY (`soil_moisture_ID`),
-    FOREIGN KEY (`soil_moisture_GardenID`) REFERENCES tbl_garden(`garden_ID`)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
-
 CREATE TABLE tbl_condition (
     `condition_ID` int(11) NOT NULL AUTO_INCREMENT,
     `condition_Amdat` varchar(255) NOT NULL,
@@ -56,6 +47,17 @@ CREATE TABLE tbl_condition (
     PRIMARY KEY (`condition_ID`),
     FOREIGN KEY (`condition_GardenID`) REFERENCES tbl_garden(`garden_ID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+
+CREATE TABLE tbl_soil_moisture (
+    `soil_moisture_ID` int(11) NOT NULL AUTO_INCREMENT,
+    `soil_moisture_Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `soil_moisture_Value` varchar(255) NOT NULL,
+    `soil_moisture_GardenID` int(11) NOT NULL,
+    PRIMARY KEY (`soil_moisture_ID`),
+    FOREIGN KEY (`soil_moisture_GardenID`) REFERENCES tbl_garden(`garden_ID`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
 
 CREATE TABLE tbl_dht20 (
     `dht_ID` int(11) NOT NULL AUTO_INCREMENT,
