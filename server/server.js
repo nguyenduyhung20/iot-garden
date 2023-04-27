@@ -3,6 +3,7 @@ const userRouter = require('./routes/userRouter')
 const mqttRouter = require('./routes/mqttRouter')
 const authRouter = require('./routes/authRouter')
 const sensorRouter = require('./routes/sensorRouter')
+const conditionRouter = require('./routes/conditionRouter')
 const bodyParser = require('body-parser');
 const app = express();
 
@@ -15,7 +16,7 @@ app.use(bodyParser.json());
 
 //Test api
 app.get("/api/test", (req, res) => {
-    res.json({"users": ["userOne", "userTwo", "userThree"]});
+    res.json({ "users": ["userOne", "userTwo", "userThree"] });
 });
 
 // User router
@@ -30,4 +31,7 @@ app.use('/api/v1', authRouter);
 // Sensor route
 app.use('/api/v1', sensorRouter);
 
-const server = app.listen(PORT, () => {console.log( `Server started on port ${PORT} `)});
+// Condition route
+app.use('/api/v1/condition', conditionRouter);
+
+const server = app.listen(PORT, () => { console.log(`Server started on port ${PORT} `) });
