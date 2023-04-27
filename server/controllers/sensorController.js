@@ -6,9 +6,10 @@ const sensorActions = {
 };
 
 const insertSensorData = (sensor, values) => {
-
-    if (sensorActions[sensor]) {
-        return sensorActions[sensor](values);
+    if (sensor === 'pump') {
+        return sensorModel.insertWaterPump(values)
+    } else if (sensor === 'soil_moisture') {
+        return sensorModel.insertSoilMoisture(values)
     } else {
         return Promise.reject(new Error(`Unknown sensor type: ${sensor}`));
     }
