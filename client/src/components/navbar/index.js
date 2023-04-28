@@ -7,6 +7,7 @@ import {
   faUser,
   faHome,
   faMobile,
+  faClockRotateLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -25,7 +26,7 @@ function Navbar({ onLogOut }) {
       icon: faHome,
     },
     {
-      heading: "CONTROLL",
+      heading: "CONTROL",
       link: "/control",
       icon: faMobile,
     },
@@ -33,6 +34,11 @@ function Navbar({ onLogOut }) {
       heading: "CUSTOMER",
       link: "/users",
       icon: faUser,
+    },
+    {
+      heading: "HISTORY",
+      link: "/history",
+      icon: faClockRotateLeft,
     },
   ];
 

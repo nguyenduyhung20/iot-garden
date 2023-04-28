@@ -17,7 +17,7 @@ const startPump = (req, res) => {
     setTimeout(() => {
         mqttModel.client.publish('IOTGARDEN222/feeds/V1', '0');
         console.log(`Pump ${pump} stopped`);
-    }, 5000);
+    }, 10000);
 
     res.json({ message: 'Pump started' });
 }
