@@ -125,9 +125,80 @@ const getSensorDataByGardenId = function (gardenId, limit) {
     });
 };
 
+const getSoilMoistureDataByGardenId = function (gardenId, limit) {
+    return new Promise((resolve, reject) => {
+        const query = `
+            SELECT
+                soil_moisture_Time,
+                soil_moisture_Value
+            FROM
+                tbl_soil_moisture
+            WHERE
+                soil_moisture_GardenID = ?
+            LIMIT ?`;
+        db.query(query, [gardenId, limit], (err, result) => {
+            if (err) {
+                console.error(err);
+                reject(err);
+            } else {
+                resolve(result);
+            }
+        });
+    });
+};
+
+const getDht20DataByGardenId = function (gardenId, limit) {
+    return new Promise((resolve, reject) => {
+        const query = `
+            SELECT
+                dht_Time,
+                dht_Temp,
+                dht_Humid
+            FROM
+                tbl_dht20
+            WHERE
+                dht_GardenID = ?
+            LIMIT ?`;
+        db.query(query, [gardenId, limit], (err, result) => {
+            if (err) {
+                console.error(err);
+                reject(err);
+            } else {
+                resolve(result);
+            }
+        });
+    });
+};
+
+const getWaterPumpDataByGardenId = function (gardenId, limit) {
+    return new Promise((resolve, reject) => {
+        const query = `
+            SELECT
+                water_pump_Time,
+                water_pump_Value
+            FROM
+                tbl_water_pump
+            WHERE
+                water_pump_GardenID = ?
+            LIMIT ?`;
+        db.query(query, [gardenId, limit], (err, result) => {
+            if (err) {
+                console.error(err);
+                reject(err);
+            } else {
+                resolve(result);
+            }
+        });
+    });
+};
+
+
 module.exports = {
     insertSoilMoisture,
     insertDht20,
     insertWaterPump,
-    getSensorDataByGardenId
+    getSensorDataByGardenId,
+    getDht20DataByGardenId,
+    getSoilMoistureDataByGardenId,
+    getWaterPumpDataByGardenId
 }
