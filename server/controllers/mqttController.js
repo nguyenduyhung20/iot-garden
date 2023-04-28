@@ -5,6 +5,23 @@ const getLatestMessage = (req, res) => {
     res.json({ message: latestMessage });
 };
 
+const startPump = (req, res) => {
+    const {pump} = req.body;
+
+    // Start the pump
+    mqttModel.client.publish('IOTGARDEN222/feeds/V1', '1');
+    console.log(`Pump ${pump} started`);
+
+    // Wait for 5 second then stop the pump
+    setTimeout( () => {
+        mqttModel.client.publish('IOTGARDEN222/feeds/V1', '0');
+        console.log(`Pump ${pump} stopped`);
+    }, 5000);
+
+    res.json({message: 'Pump started'});
+}
+
 module.exports = {
-    getLatestMessage
+    getLatestMessage,
+    startPump
 };

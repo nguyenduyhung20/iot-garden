@@ -78,6 +78,7 @@ client.on('error', (error) => {
 });
 
 module.exports = {
-	getLatestMessages: () => latestMessages
+	getLatestMessages: () => latestMessages,
+	client
 };
 

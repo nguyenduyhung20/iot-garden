@@ -34,4 +34,6 @@ app.use('/api/v1', sensorRouter);
 // Condition route
 app.use('/api/v1/condition', conditionRouter);
 
+
+
 const server = app.listen(PORT, () => { console.log(`Server started on port ${PORT} `) });
