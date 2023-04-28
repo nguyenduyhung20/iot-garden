@@ -1,0 +1,29 @@
+.main_Control {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+
+    &_title {
+        align-self: flex-start;
+        padding-left: 10%;
+    }
+
+    &_container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+
+
+
+        img {
+            border-radius: 5px;
+            opacity: 0.95;
+            transition: 0.3s;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+}

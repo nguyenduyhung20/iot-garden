@@ -5,6 +5,7 @@
     border-radius: 10px;
     justify-content: space-between;
     align-self: flex-end;
+    transition: 0.5s;
     .content__container{
         display: flex;
         
@@ -20,7 +21,8 @@
 }
 .btn-block:hover,.container__box:hover{
     cursor: pointer;
-    background-color:#71b6a8;
+    border-radius: 10px;
+    background-color:#55867c;
 }
 
     

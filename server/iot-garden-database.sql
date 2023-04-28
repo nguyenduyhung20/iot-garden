@@ -86,3 +86,10 @@ CREATE TABLE tbl_light (
     PRIMARY KEY (`light_ID`),
     FOREIGN KEY (`light_GardenID`) REFERENCES tbl_garden(`garden_ID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+INSERT INTO `tbl_user` (`user_ID`, `user_Name`, `user_Username`, `user_Password`, `user_Role`, `user_Address`, `user_Email`, `user_Phone`) VALUES
+(1, 'User', 'user', '$2b$10$6ySwiTwe/HeJA3a6nzrzVePh.kijR.TRbm236BKWZBoBPi0ej5F/O', 'USER', NULL, NULL, NULL);
+
+INSERT INTO `tbl_garden` (`garden_ID`, `garden_OwnerID`, `garden_Location`, `garden_Status`, `garden_Name`, `garden_Description`, `garden_Area`, `garden_Image`) VALUES
+(1, 1, 'Default location', NULL, 'Default Garden', 'Default', '0.00', NULL);
+
