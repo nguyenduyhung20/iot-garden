@@ -54,6 +54,7 @@ const getDht20Data = async (req, res, next) => {
         gardenId = req.params.gardenId;
         limit = req.query.limit || 10;
         const data = await sensorModel.getDht20DataByGardenId(gardenId, limit);
+        res.status(200).json(data);
     } catch (err) {
         next(err);
     }
@@ -65,6 +66,7 @@ const getWaterPumpData = async (req, res, next) => {
         gardenId = req.params.gardenId;
         limit = req.query.limit || 10;
         const data = await sensorModel.getWaterPumpDataByGardenId(gardenId, limit);
+        res.status(200).json(data);
     } catch (err) {
         next(err);
     }

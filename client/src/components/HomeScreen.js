@@ -5,6 +5,7 @@ import classes from "../App.module.scss";
 import Chart from "./Chart/index.js";
 import Profile from "./Profile";
 import anime from "animejs";
+import DataDisplay from "./DataDisplay";
 // const ControlsData = ({ message }) => {
 //   const controlsData = [
 //     {
@@ -62,29 +63,29 @@ function HomeScreen({ message }) {
   const getThreshold = (title) => {
     const arr = JSON.parse(localStorage.getItem('infortree')) || []
     const item = arr.find(i => i.location.title === title)
-    return item ? item : { nhietdo: 0, doam: 0, doamoxi: 0 }
+    return item ? item : { nhietdo: 30, doam: 50, doamoxi: 30 }
   }
 
-  useEffect(() => {
-    const threshold = getThreshold('NHIỆT ĐỘ')
-    if (message.air_temperature > threshold.nhietdo) {
-      alert('NHIỆT ĐỘ đang vượt quá giới hạn')
-    }
-  }, [message.air_temperature])
+  // useEffect(() => {
+  //   const threshold = getThreshold('NHIỆT ĐỘ')
+  //   if (message.air_temperature > threshold.nhietdo) {
+  //     alert('NHIỆT ĐỘ đang vượt quá giới hạn')
+  //   }
+  // }, [message.air_temperature])
 
-  useEffect(() => {
-    const threshold = getThreshold('ĐỘ ẨM')
-    if (message.air_humid > threshold.doamoxi) {
-      alert('ĐỘ ẨM đang vượt quá giới hạn')
-    }
-  }, [message.air_humid])
+  // useEffect(() => {
+  //   const threshold = getThreshold('ĐỘ ẨM')
+  //   if (message.air_humid > threshold.doam) {
+  //     alert('ĐỘ ẨM đang vượt quá giới hạn')
+  //   }
+  // }, [message.air_humid])
 
-  useEffect(() => {
-    const threshold = getThreshold('ĐỘ ẨM ĐẤT')
-    if (message.soil_moisture > threshold.doam) {
-      alert('ĐỘ ẨM ĐẤT đang vượt quá giới hạn')
-    }
-  }, [message.soil_moisture])
+  // useEffect(() => {
+  //   const threshold = getThreshold('ĐỘ ẨM ĐẤT')
+  //   if (message.soil_moisture < threshold.doamoxi) {
+  //     alert('ĐỘ ẨM ĐẤT đang dưới mức giới hạn')
+  //   }
+  // }, [message.soil_moisture])
 
 
   const img = [
@@ -96,7 +97,9 @@ function HomeScreen({ message }) {
 
 
   return (
+
     <div style={{ width: "83vw" }}>
+
       <div>
 
         <h1>WELCOME TO GREEN GARDEN!</h1>
@@ -111,10 +114,10 @@ function HomeScreen({ message }) {
                   <img style={{ width: "100px", cursor: 'pointer', margin: "0 12px", borderRadius: "10px", }} src={item.link} />
                 </div>
                 <span style={{ position: "absolute", top: "54%", left: "16%", fontWeight: 600, fontSize: "15px" }}>
-                  {item.title === 'NHIỆT ĐỘ' ? message.air_temperature : item.title === 'ĐỘ ẨM' ? message.air_humid : item.title === 'ĐỘ ẨM ĐẤT' ? message.soil_moisture : item.title === 'User' ? '0' : ''}
-                  {/* {item.title === 'NHIỆT ĐỘ' ? `${message.air_temperature} (Threshold: ${getThreshold('NHIỆT ĐỘ').nhietdo})` : ''}
-                  {item.title === 'ĐỘ ẨM' ? `${message.air_humid} (Threshold: ${getThreshold('ĐỘ ẨM').doam})` : ''}
-                  {item.title === 'ĐỘ ẨM ĐẤT' ? `${message.soil_moisture} (Threshold: ${getThreshold('ĐỘ ẨM ĐẤT').doamoxi})` : ''} */}
+                  {/* {item.title === 'NHIỆT ĐỘ' ? message.air_temperature : item.title === 'ĐỘ ẨM' ? message.air_humid : item.title === 'ĐỘ ẨM ĐẤT' ? message.soil_moisture : item.title === 'User' ? '0' : ''} */}
+                  {item.title === 'NHIỆT ĐỘ' ? `${message.air_temperature} (M: ${getThreshold(item.title).nhietdo})` : ''}
+                  {item.title === 'ĐỘ ẨM' ? `${message.air_humid} (M: ${getThreshold(item.title).doam})` : ''}
+                  {item.title === 'ĐỘ ẨM ĐẤT' ? `${message.soil_moisture} (M: ${getThreshold(item.title).doamoxi})` : ''}
                   {item.title === 'User' ? '0' : ''}
                 </span>
               </div>

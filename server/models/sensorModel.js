@@ -135,6 +135,8 @@ const getSoilMoistureDataByGardenId = function (gardenId, limit) {
                 tbl_soil_moisture
             WHERE
                 soil_moisture_GardenID = ?
+            ORDER BY
+                soil_moisture_Time DESC
             LIMIT ?`;
         db.query(query, [gardenId, limit], (err, result) => {
             if (err) {
@@ -158,6 +160,8 @@ const getDht20DataByGardenId = function (gardenId, limit) {
                 tbl_dht20
             WHERE
                 dht_GardenID = ?
+            ORDER BY
+                dht_Time DESC
             LIMIT ?`;
         db.query(query, [gardenId, limit], (err, result) => {
             if (err) {
@@ -179,7 +183,10 @@ const getWaterPumpDataByGardenId = function (gardenId, limit) {
             FROM
                 tbl_water_pump
             WHERE
+                water_pump_Value = 1 AND
                 water_pump_GardenID = ?
+            ORDER BY
+                water_pump_Time DESC
             LIMIT ?`;
         db.query(query, [gardenId, limit], (err, result) => {
             if (err) {
@@ -191,7 +198,6 @@ const getWaterPumpDataByGardenId = function (gardenId, limit) {
         });
     });
 };
-
 
 module.exports = {
     insertSoilMoisture,

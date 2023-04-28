@@ -11,6 +11,7 @@ import Profile from "./components/Profile";
 import InfomationTree from "./components/InfomationTree";
 import Pump from "./components/Pump";
 import PumpSetting from "./components/PumpSetting";
+import History from "./components/History";
 
 
 
@@ -80,11 +81,15 @@ function App() {
 						/>
 						<Route
 							path="/login"
-							element={<Login onLogin={handleLogin} />}
+							element={true ? <Navigate to="/dashboard" /> : <Login onLogin={handleLogin} />}
 						/>
 						<Route
 							path="/signup"
 							element={<SignUp />}
+						/>
+						<Route
+							path="/history"
+							element={true ? <History /> : <Navigate to="/login" />}
 						/>
 						<Route path="*" element={<Navigate to="/login" />} />
 					</Routes>

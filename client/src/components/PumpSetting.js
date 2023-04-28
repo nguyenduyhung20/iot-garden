@@ -5,9 +5,11 @@ const PumpSetting = () => {
     const location = useLocation().state.location
 
     const arr = JSON.parse(localStorage.getItem('infortree')) ? JSON.parse(localStorage.getItem('infortree')) : []
-    const [nhietdo, setNhietdo] = useState(0)
-    const [doam, setDoam] = useState(0)
-    const [doamoxi, setDoamoxi] = useState(0)
+    const currentItem = arr.find(item => item.location && item.location.title === location.title) || { nhietdo: 0, doam: 0, doamoxi: 0 }
+
+    const [nhietdo, setNhietdo] = useState(currentItem.nhietdo)
+    const [doam, setDoam] = useState(currentItem.doam)
+    const [doamoxi, setDoamoxi] = useState(currentItem.doamoxi)
     const handleReset = () => {
         setNhietdo(0)
         setDoam(0)
