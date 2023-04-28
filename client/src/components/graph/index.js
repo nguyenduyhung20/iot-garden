@@ -13,9 +13,11 @@ import classes from "./graph.module.scss";
 
 //   export default Graph;
 
-function Graph({ name }) {
+function Graph(props) {
+  const {name,handleType}=props
+  
   return (
-    <div className={classes["btn-block"]}>
+    <div onClick={()=>{handleType(name)}} className={classes["btn-block"]}>
       <div className={classes.container__box}>
         <div>
           <h2 className={classes.update__content}>{name}</h2>

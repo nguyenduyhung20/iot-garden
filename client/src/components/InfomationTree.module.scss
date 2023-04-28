@@ -1,0 +1,29 @@
+.mainInfomationTree{
+  
+    &_title{
+        margin-left: 10px;
+        margin-right: 50px;
+    }
+    &_container{
+        display: flex;
+
+        justify-content: center;
+        align-items: center;
+        margin-left: 50px;
+        &_containers{
+ 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        h5{
+            color:black;
+            margin: 5px;
+            font-size: 25px;
+        }
+        div{
+            margin: 15px 0 0 0;
+        }
+    }
+}

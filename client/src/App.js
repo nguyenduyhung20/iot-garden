@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Routes, Navigate} from "react-router-dom"
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom"
 import classes from "./App.module.scss";
 import axios from "axios";
 import NavBar from "./components/navbar";
 import HomeScreen from "./components/HomeScreen";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
-import Setting from "./components/Setting";
+import Control from "./components/Control";
 import Profile from "./components/Profile";
+import InfomationTree from "./components/InfomationTree";
+import Pump from "./components/Pump";
+import PumpSetting from "./components/PumpSetting";
 
 
 
@@ -38,45 +41,56 @@ function App() {
 		if (loggedIn) {
 			const intervalID = setInterval(() => {
 				axios
-				.get("/latest-message")
-				.then(response => setMessage(response.data.message))
-				.catch(error => console.log(error));
+					.get("/latest-message")
+					.then(response => setMessage(response.data.message))
+					.catch(error => console.log(error));
 			}, 5000);
 			return () => clearInterval(intervalID);
 		}
 	}, [loggedIn]);
-	
+
 	return (
-	<Router>
-		<div className={classes["main-content"]}>
-			{loggedIn && <NavBar onLogOut={logout}/>}
-			{loggedIn !== null &&(
-			<Routes>
-				<Route
-					path="/dashboard"
-					element={loggedIn ? <HomeScreen message={message}/> : <Navigate to="/login"/>}
-				/>
-				<Route
-					path="/setting"
-					element={loggedIn ? <Setting/> : <Navigate to="/login"/>}
-				/>
-				<Route
-					path="/profile"
-					element={loggedIn ? <Profile/> : <Navigate to="/login"/>}
-				/>
-				<Route
-					path="/login"
-					element={<Login onLogin={handleLogin}/>}
-				/>
-				<Route
-					path="/signup"
-					element={<SignUp/>}
-				/>
-				 <Route path="*" element={<Navigate to="/login" />} />
-			</Routes>
-			)}
-		</div>
-	</Router>
+		<Router>
+			<div className={classes["main-content"]}>
+				{true && <NavBar onLogOut={logout} />}
+				{true !== null && (
+					<Routes>
+						<Route
+							path="/dashboard"
+							element={true ? <HomeScreen message={message} /> : <Navigate to="/login" />}
+						/>
+
+						<Route
+							path="/control"
+							element={true ? <Control /> : <Navigate to="/login" />}
+						/>
+						<Route
+							path="/infomation"
+							element={true ? <InfomationTree message={message} /> : <Navigate to="/login" />}
+						/>
+
+						<Route
+							path="/pumpSetting"
+							element={true ? <PumpSetting message={message} /> : <Navigate to="/login" />}
+						/>
+
+						<Route
+							path="/pumpWater"
+							element={true ? <Pump /> : <Navigate to="/login" />}
+						/>
+						<Route
+							path="/login"
+							element={<Login onLogin={handleLogin} />}
+						/>
+						<Route
+							path="/signup"
+							element={<SignUp />}
+						/>
+						<Route path="*" element={<Navigate to="/login" />} />
+					</Routes>
+				)}
+			</div>
+		</Router>
 
 	);
 }

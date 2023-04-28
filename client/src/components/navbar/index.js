@@ -8,9 +8,9 @@ import {
   faHome,
   faMobile,
 } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-function Navbar({onLogOut}) {
+function Navbar({ onLogOut }) {
   const navigate = useNavigate();
   //Handle logout
   const handleLogOut = () => {
@@ -26,7 +26,7 @@ function Navbar({onLogOut}) {
     },
     {
       heading: "CONTROLL",
-      link: "/upload",
+      link: "/control",
       icon: faMobile,
     },
     {
@@ -55,13 +55,13 @@ function Navbar({onLogOut}) {
             className={`${classes["navbar__item"]} 
                      ${classes["navbar__item--actived"]}`}
           >
-            <div to={item.link} className={classes["navbar__item-link"]}>
+            <Link to={item.link} className={classes["navbar__item-link"]}>
               <FontAwesomeIcon
                 className={classes["navbar__item-icon"]}
                 icon={item.icon}
               />
               {item.heading}
-            </div>
+            </Link>
           </li>
         ))}
         <li className={classes["end"]}>
