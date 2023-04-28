@@ -1,6 +1,6 @@
-* {
-    box-sizing: border-box;
-}
+// * {
+//     box-sizing: border-box;
+// }
 
 .main-content {
     display: flex;
@@ -13,7 +13,7 @@
 }
 
 .routes-content {
-    width: 80vw;
+    width: 85vw;
     box-sizing: border-box;
 }
 
@@ -61,4 +61,27 @@
 
 .opa:hover {
     opacity: 1;
+}
+
+/* This will change the scrollbar for the whole page */
+::-webkit-scrollbar {
+    width: 10px;
+    /* width of the entire scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    /* color of the tracking area */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    /* color of the scroll thumb */
+    border-radius: 20px;
+    /* roundness of the scroll thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    /* color of the scroll thumb on hover */
 }

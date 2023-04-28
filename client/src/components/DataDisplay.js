@@ -6,6 +6,9 @@ import useWindowHeight from './hook/useWindowHeight';
 
 const DataDisplay = ({ gardenId }) => {
     const windowHeight = useWindowHeight();
+    const limit = 20; // or any other value
+    const tableHeight = windowHeight - 200;
+    const scrollHeight = { y: tableHeight };
 
     const [isLoading, setIsLoading] = useState(true);
     const [data, setData] = useState({
@@ -18,9 +21,9 @@ const DataDisplay = ({ gardenId }) => {
         const fetchData = async () => {
             setIsLoading(true);
             try {
-                const { data: soilMoistureData } = await axios.get(`/api/v1/soil-moisture/${gardenId}`);
-                const { data: dht20Data } = await axios.get(`/api/v1/dht20/${gardenId}`);
-                const { data: waterPumpData } = await axios.get(`/api/v1/water-pump/${gardenId}`);
+                const { data: soilMoistureData } = await axios.get(`/api/v1/soil-moisture/${gardenId}?limit=${limit}`);
+                const { data: dht20Data } = await axios.get(`/api/v1/dht20/${gardenId}?limit=${limit}`);
+                const { data: waterPumpData } = await axios.get(`/api/v1/water-pump/${gardenId}?limit=${limit}`);
                 const timeOffset = 0;
 
                 // Format the date for each data point
@@ -71,19 +74,19 @@ const DataDisplay = ({ gardenId }) => {
 
     const waterPumpColumns = [
         { title: 'Time', dataIndex: 'water_pump_Time', key: 'time' },
-        { title: 'Value', dataIndex: 'water_pump_Value', key: 'value' },
+        // { title: 'Value', dataIndex: 'water_pump_Value', key: 'value' },
     ];
 
     return (
         <div style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap' }}>
             <Card title="Soil Moisture Data" style={{ width: '30%', marginTop: 16 }}>
-                <Table dataSource={data.soilMoistureData} columns={soilMoistureColumns} size="small" pagination={false} scroll={{ y: windowHeight / 3 }} />
+                <Table dataSource={data.soilMoistureData} columns={soilMoistureColumns} size="small" pagination={false} scroll={scrollHeight} />
             </Card>
-            <Card title="DHT20 Data" style={{ width: '30%', marginTop: 16 }}>
-                <Table dataSource={data.dht20Data} columns={dht20Columns} size="small" pagination={false} scroll={{ y: windowHeight / 3 }} />
+            <Card title="DHT20 Data" style={{ width: '45%', marginTop: 16 }}>
+                <Table dataSource={data.dht20Data} columns={dht20Columns} size="small" pagination={false} scroll={scrollHeight} />
             </Card>
-            <Card title="Water Pump Data" style={{ width: '30%', marginTop: 16 }}>
-                <Table dataSource={data.waterPumpData} columns={waterPumpColumns} size="small" pagination={false} scroll={{ y: windowHeight / 3 }} />
+            <Card title="Water Pump Data" style={{ width: '20%', marginTop: 16 }}>
+                <Table dataSource={data.waterPumpData} columns={waterPumpColumns} size="small" pagination={false} scroll={scrollHeight} />
             </Card>
         </div>
     );
