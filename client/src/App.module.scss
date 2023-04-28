@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 .main-content {
     display: flex;
     background-Color: #def6e8;
@@ -6,6 +10,11 @@
         color: #052868;
         margin: 2rem;
     }
+}
+
+.routes-content {
+    width: 80vw;
+    box-sizing: border-box;
 }
 
 .control-container {

@@ -1,10 +1,19 @@
+// History.js
 import React from "react";
+import { Layout } from 'antd';
 import DataDisplay from "./DataDisplay";
-const History = ({gardenId}) => {
+
+const { Content } = Layout;
+
+const History = ({ gardenId }) => {
     return (
-        <div>
-            <DataDisplay gardenId={gardenId}/>
-        </div>
+        <Layout>
+            <Content style={{ margin: '24px 16px 0' }}>
+                <div style={{ padding: 24 }}>
+                    <DataDisplay gardenId={gardenId} />
+                </div>
+            </Content>
+        </Layout>
     );
 };
 

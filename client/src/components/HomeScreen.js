@@ -98,7 +98,7 @@ function HomeScreen({ message }) {
 
   return (
 
-    <div style={{ width: "83vw" }}>
+    <div style={{ width: "80vw" }}>
 
       <div>
 
@@ -127,7 +127,7 @@ function HomeScreen({ message }) {
 
         </div>
 
-        <div style={{ width: "100vw", height: "40px" }}></div>
+        <div style={{ width: "80vw", height: "40px" }}></div>
       </div>
       {titleHandle === 'Use' ? <div ref={handleProfile}>< Profile /></div> : <div><Chart ref={handleChart} titleHandle={titleHandle} /></div>}
 

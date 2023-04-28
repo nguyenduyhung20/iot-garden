@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Card, Spin, Table } from 'antd';
 import moment from 'moment';
+import useWindowHeight from './hook/useWindowHeight';
 
 const DataDisplay = ({ gardenId }) => {
+    const windowHeight = useWindowHeight();
+
     const [isLoading, setIsLoading] = useState(true);
     const [data, setData] = useState({
         soilMoistureData: null,
@@ -72,15 +75,15 @@ const DataDisplay = ({ gardenId }) => {
     ];
 
     return (
-        <div>
-            <Card title="Soil Moisture Data">
-                <Table dataSource={data.soilMoistureData} columns={soilMoistureColumns} rowKey="soil_moisture_Time" />
+        <div style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap' }}>
+            <Card title="Soil Moisture Data" style={{ width: '30%', marginTop: 16 }}>
+                <Table dataSource={data.soilMoistureData} columns={soilMoistureColumns} size="small" pagination={false} scroll={{ y: windowHeight / 3 }} />
             </Card>
-            <Card title="DHT20 Data">
-                <Table dataSource={data.dht20Data} columns={dht20Columns} rowKey="dht_Time" />
+            <Card title="DHT20 Data" style={{ width: '30%', marginTop: 16 }}>
+                <Table dataSource={data.dht20Data} columns={dht20Columns} size="small" pagination={false} scroll={{ y: windowHeight / 3 }} />
             </Card>
-            <Card title="Water Pump Data">
-                <Table dataSource={data.waterPumpData} columns={waterPumpColumns} rowKey="water_pump_Time" />
+            <Card title="Water Pump Data" style={{ width: '30%', marginTop: 16 }}>
+                <Table dataSource={data.waterPumpData} columns={waterPumpColumns} size="small" pagination={false} scroll={{ y: windowHeight / 3 }} />
             </Card>
         </div>
     );

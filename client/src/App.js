@@ -55,44 +55,47 @@ function App() {
 			<div className={classes["main-content"]}>
 				{true && <NavBar onLogOut={logout} />}
 				{true !== null && (
-					<Routes>
-						<Route
-							path="/dashboard"
-							element={true ? <HomeScreen message={message} /> : <Navigate to="/login" />}
-						/>
+					<div className={classes["routes-content"]}>
+						<Routes>
+							<Route
+								path="/dashboard"
+								element={true ? <HomeScreen message={message} /> : <Navigate to="/login" />}
+							/>
 
-						<Route
-							path="/control"
-							element={true ? <Control /> : <Navigate to="/login" />}
-						/>
-						<Route
-							path="/infomation"
-							element={true ? <InfomationTree message={message} /> : <Navigate to="/login" />}
-						/>
+							<Route
+								path="/control"
+								element={true ? <Control /> : <Navigate to="/login" />}
+							/>
+							<Route
+								path="/infomation"
+								element={true ? <InfomationTree message={message} /> : <Navigate to="/login" />}
+							/>
 
-						<Route
-							path="/pumpSetting"
-							element={true ? <PumpSetting message={message} /> : <Navigate to="/login" />}
-						/>
+							<Route
+								path="/pumpSetting"
+								element={true ? <PumpSetting message={message} /> : <Navigate to="/login" />}
+							/>
 
-						<Route
-							path="/pumpWater"
-							element={true ? <Pump /> : <Navigate to="/login" />}
-						/>
-						<Route
-							path="/login"
-							element={true ? <Navigate to="/dashboard" /> : <Login onLogin={handleLogin} />}
-						/>
-						<Route
-							path="/signup"
-							element={<SignUp />}
-						/>
-						<Route
-							path="/history"
-							element={true ? <History /> : <Navigate to="/login" />}
-						/>
-						<Route path="*" element={<Navigate to="/login" />} />
-					</Routes>
+							<Route
+								path="/pumpWater"
+								element={true ? <Pump /> : <Navigate to="/login" />}
+							/>
+							<Route
+								path="/login"
+								element={true ? <Navigate to="/dashboard" /> : <Login onLogin={handleLogin} />}
+							/>
+							<Route
+								path="/signup"
+								element={<SignUp />}
+							/>
+							<Route
+								path="/history"
+								element={true ? <History gardenId={1} /> : <Navigate to="/login" />}
+							/>
+							<Route path="*" element={<Navigate to="/login" />} />
+						</Routes>
+					</div>
+
 				)}
 			</div>
 		</Router>
