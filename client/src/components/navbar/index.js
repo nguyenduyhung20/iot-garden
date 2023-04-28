@@ -25,7 +25,7 @@ function Navbar({ onLogOut }) {
       icon: faHome,
     },
     {
-      heading: "CONTROLL",
+      heading: "CONTROL",
       link: "/control",
       icon: faMobile,
     },

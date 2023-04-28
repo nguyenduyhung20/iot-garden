@@ -7,7 +7,7 @@ function Control() {
         temperature: "30",
         humidity: "20",
         humidityOxi: "60",
-        timePump: "10 Phút",
+        timePump: "10 GIÂY",
         run: "Tưới"
     },
     {
@@ -16,7 +16,7 @@ function Control() {
         temperature: "30",
         humidity: "20",
         humidityOxi: "60",
-        timePump: "10 Phút",
+        timePump: "10 Giây",
         run: "Tưới"
     },
     {
@@ -60,12 +60,12 @@ function Control() {
         navigate('/infomation', { state: { link, title, temperature, humidity, humidityOxi, timePump, run } })
 
     }
-    const handledelete = ()=>{
-       localStorage.clear('datePump')
-      setTimeout(()=>{
-        alert('Xóa thành công')
-      },1500)
-      
+    const handledelete = () => {
+        localStorage.clear('datePump')
+        setTimeout(() => {
+            alert('Xóa thành công')
+        }, 1500)
+
     }
     return (
         <div className={classes.main_Control}>
