@@ -222,7 +222,7 @@ const Chart = (props) => {
         datasets: type === 'NHIỆT ĐỘ' ? nhietdo : type === 'ĐỘ ẨM' ? doam : type === 'ĐỘ ẨM ĐẤT' ? doamdat : []
     }
     const graphsData = ["NHIỆT ĐỘ", "ĐỘ ẨM", "ĐỘ ẨM ĐẤT"];
-    console.log(titleHandle)
+    // console.log(titleHandle)
     // useEffect(() => {
     //     if (titleHandle) {
     //         setType(titleHandle)
