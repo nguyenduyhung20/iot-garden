@@ -22,9 +22,7 @@ const startPump = (req, res) => {
     res.json({ message: 'Pump started' });
 }
 
-
 module.exports = {
     getLatestMessage,
     startPump,
-
 };
