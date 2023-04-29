@@ -4,6 +4,7 @@ const mqttRouter = require('./routes/mqttRouter')
 const authRouter = require('./routes/authRouter')
 const sensorRouter = require('./routes/sensorRouter')
 const conditionRouter = require('./routes/conditionRouter')
+const gardenRouter = require('./routes/gardenRouter')
 const bodyParser = require('body-parser');
 const app = express();
 
@@ -34,6 +35,7 @@ app.use('/api/v1', sensorRouter);
 // Condition route
 app.use('/api/v1/condition', conditionRouter);
 
-
+// Garden route
+app.use('/api/v1/gardens', gardenRouter);
 
 const server = app.listen(PORT, () => { console.log(`Server started on port ${PORT} `) });

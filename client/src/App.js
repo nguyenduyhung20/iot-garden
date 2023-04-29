@@ -12,6 +12,8 @@ import InfomationTree from "./components/InfomationTree";
 import Pump from "./components/Pump";
 import PumpSetting from "./components/PumpSetting";
 import History from "./components/History";
+import ThresholdAlert from "./components/ThresholdAlert";
+
 
 
 
@@ -53,10 +55,13 @@ function App() {
 	return (
 		<Router>
 			<div className={classes["main-content"]}>
+				<ThresholdAlert message={message} gardenId={1} />
 				{true && <NavBar onLogOut={logout} />}
 				{true !== null && (
 					<div className={classes["routes-content"]}>
+
 						<Routes>
+
 							<Route
 								path="/dashboard"
 								element={true ? <HomeScreen message={message} /> : <Navigate to="/login" />}

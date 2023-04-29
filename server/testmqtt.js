@@ -17,15 +17,15 @@ client.on('connect', () => {
 });
 
 function generateFakeData() {
-  const airTemperature = getRandomValue(20, 30);
-  const airHumidity = getRandomValue(40, 60);
-  const soilMoisture = getRandomValue(20, 40);
+  const airTemperature = getRandomValue(25, 30);
+  const airHumidity = getRandomValue(45, 55);
+  const soilMoisture = getRandomValue(25, 30);
   const pumpStatus = Math.round(Math.random());
 
   // Publish fake data to MQTT broker
-  client.publish('IOTGARDEN222/feeds/V3', JSON.stringify(airTemperature));
-  client.publish('IOTGARDEN222/feeds/V4', JSON.stringify(airHumidity));
-  client.publish('IOTGARDEN222/feeds/V5', JSON.stringify(soilMoisture));
+  // client.publish('IOTGARDEN222/feeds/V3', JSON.stringify(airTemperature));
+  // client.publish('IOTGARDEN222/feeds/V4', JSON.stringify(airHumidity));
+  // client.publish('IOTGARDEN222/feeds/V5', JSON.stringify(soilMoisture));
   client.publish('IOTGARDEN222/feeds/V1', JSON.stringify(pumpStatus));
 
   console.log(`Published fake data: air_temperature=${airTemperature}, air_humid=${airHumidity}, soil_moisture=${soilMoisture}, pump=${pumpStatus}`);
