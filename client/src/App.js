@@ -55,55 +55,6 @@ function App() {
 		}
 	}, [loggedIn]);
 
-	// Component for render routes
-	const RenderRoutes = () => {
-		return (
-			<Routes>
-				<Route
-					path="/login"
-					element={<Login onLogin={handleLogin} />}
-				/>
-				<Route
-					path="/signup"
-					element={<SignUp />}
-				/>
-				{loggedIn ? (
-					<>
-						<Route
-							path="/dashboard"
-							element={<HomeScreen message={message} />}
-						/>
-						<Route
-							path="/control"
-							element={<Control />}
-						/>
-						<Route
-							path="/infomation"
-							element={<InfomationTree message={message} />}
-						/>
-						<Route
-							path="/pumpSetting"
-							element={<PumpSetting message={message} />}
-						/>
-						<Route
-							path="/pumpWater"
-							element={<Pump />}
-						/>
-						<Route
-							path="/history"
-							element={<History gardenId={1} />}
-						/>
-						<Route
-							path="/profile"
-							element={<Profile />}
-						/>
-					</>
-				) : (
-					<Route path="*" element={<Navigate to="/login" />} />
-				)}
-			</Routes>
-		)
-	};
 
 
 	return (
@@ -119,7 +70,50 @@ function App() {
 				<ThresholdAlert message={message} gardenId={gardenId} />
 				< NavBar onLogOut={handleLogout} />
 				<div className={classes["routes-content"]}>
-					<RenderRoutes />
+					<Routes>
+						<Route
+							path="/login"
+							element={<Login onLogin={handleLogin} />}
+						/>
+						<Route
+							path="/signup"
+							element={<SignUp />}
+						/>
+						{loggedIn ? (
+							<>
+								<Route
+									path="/dashboard"
+									element={<HomeScreen message={message} />}
+								/>
+								<Route
+									path="/control"
+									element={<Control />}
+								/>
+								<Route
+									path="/infomation"
+									element={<InfomationTree message={message} />}
+								/>
+								<Route
+									path="/pumpSetting"
+									element={<PumpSetting message={message} />}
+								/>
+								<Route
+									path="/pumpWater"
+									element={<Pump />}
+								/>
+								<Route
+									path="/history"
+									element={<History gardenId={1} />}
+								/>
+								<Route
+									path="/profile"
+									element={<Profile />}
+								/>
+							</>
+						) : (
+							<Route path="*" element={<Navigate to="/login" />} />
+						)}
+					</Routes>
 				</div>
 			</div>
 		</Router>
