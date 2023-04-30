@@ -45,7 +45,7 @@ const Profile = React.memo(function () {
     );
 
     const AnimatedTabPanel = ({ children, keyName }) => (
-        <Tab.Panel className="p-5 border-2 border-blue-200 rounded-lg shadow-lg bg-white overflow-hidden transform transition-transform duration-200 hover:scale-105">
+        <Tab.Panel className="p-5 border-2 border-blue-200 rounded-lg shadow-lg bg-white overflow-hidden ">
             <AnimatePresence mode="wait">
                 <motion.div
                     key={keyName}
