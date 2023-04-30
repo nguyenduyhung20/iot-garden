@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Input from './Input';
+import './SignUp.scss';
 
 function SignUp(props) {
 	const [name, setName] = useState('');
@@ -21,18 +22,14 @@ function SignUp(props) {
 	};
 
 	return (
-		<div>
-			<h1>Sign Up</h1>
-			<form onSubmit={handleSubmit}>
+		<div className="signup-container">
+			<h1 className="signup-title">Sign Up</h1>
+			<form className="signup-form" onSubmit={handleSubmit}>
 				<Input label="Name:" type="text" value={name} onChange={e => setName(e.target.value)} />
-				<br />
 				<Input label="Username:" type="text" value={username} onChange={e => setUsername(e.target.value)} />
-				<br />
 				<Input label="Password:" type="password" value={password} onChange={e => setPassword(e.target.value)} />
-				<br />
 				<Input label="Confirm Password:" type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
-				<br />
-				<button type="submit">Sign Up</button>
+				<button className="signup-button" type="submit">Sign Up</button>
 			</form>
 		</div>
 	);

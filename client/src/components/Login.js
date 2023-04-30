@@ -4,6 +4,7 @@ import axios from "axios";
 import Input from "./Input";
 import CheckBox from "./CheckBox";
 import jwtDecode from 'jwt-decode';
+import './Login.scss';
 
 
 function Login({ onLogin }) {
@@ -53,39 +54,33 @@ function Login({ onLogin }) {
 		navigate('/signup')
 	}
 	return (
-		<div>
-			<h1>Login</h1>
-			<form onSubmit={handleSubmit}>
+		<div className="login-container">
+			<h1 className="login-title">Login</h1>
+			<form className="login-form" onSubmit={handleSubmit}>
 				<Input
 					type="text"
 					value={username}
 					onChange={e => setUsername(e.target.value)}
 					label="Username: "
 				/>
-				<br />
 				<Input
 					type="password"
 					value={password}
 					onChange={e => setPassword(e.target.value)}
 					label="Password: "
 				/>
-				<br />
 				<CheckBox
 					checked={rememberMe}
 					onChange={e => setRememberMe(e.target.checked)}
 					label="Remember me:"
 				/>
-				<br />
-				<div>
-					<button type="button" onClick={handleSignUp}>Sign Up</button>
-					<button type="submit">Login</button>
+				<div className="login-actions">
+					<button className="sign-up-button" type="button" onClick={handleSignUp}>Sign Up</button>
+					<button className="login-button" type="submit">Login</button>
 				</div>
-
 			</form>
-
 		</div>
 	);
-
 };
 
 export default Login;
