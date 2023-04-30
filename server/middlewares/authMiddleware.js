@@ -4,22 +4,39 @@
  * If the token is valid, it decodes the payload and adds it to the request object. 
  * If the token is not present or invalid, it returns a 401 Unauthorized error. 
  * This middleware can be used to protect routes that require authentication.
- * */ 
+ * */
+
+/**
+ * req.user return:
+ * {
+    "id":,
+    "username": "",
+    "iat": <number>,
+    "exp": <number>
+}
+ */
 
 const jwt = require('jsonwebtoken');
 
 const secret = 'doge'; // Recommended secret is `h#J8$2kL@9!z`, but who the fuck care
 
 function authenticate(req, res, next) {
-    const token = req.header.authorization;
+    let token = req.headers.authorization;
+    if (token && token.startsWith('Bearer ')) {
+        // Remove bearer from string
+        token = token.slice(7, token.length);
+    }
+    // console.log('Got token: ', token);
     if (!token) {
-        return res.status(401).json({error: 'Unauthorized'});
+        return res.status(401).json({ error: 'Unauthorized' });
     }
     jwt.verify(token, secret, (err, decoded) => {
         if (err) {
-            return res.status(401).json({error: 'Unauthorized'});
+            console.error(err);
+            return res.status(401).json({ error: 'Unauthorized' });
         }
         req.user = decoded;
+        console.log("This is user id: ", req.user.id);
         next();
     });
 };

@@ -22,10 +22,11 @@ function App() {
 	const [loggedIn, setLoggedIn] = useState(null);
 
 	// Logout function then, will replace it when i have better solution
-	function logout() {
+	const logout = () => {
 		localStorage.removeItem("token");
 		setLoggedIn(false);
 	}
+
 	const handleLogin = () => {
 		setLoggedIn(true);
 	}
@@ -54,6 +55,13 @@ function App() {
 
 	return (
 		<Router>
+			{/* <div>
+				{loggedIn ? (
+					<p>You are logged in</p>
+				) : (
+					<p>You are not logged in</p>
+				)}
+			</div> */}
 			<div className={classes["main-content"]}>
 				<ThresholdAlert message={message} gardenId={1} />
 				{true && <NavBar onLogOut={logout} />}
@@ -87,7 +95,7 @@ function App() {
 							/>
 							<Route
 								path="/login"
-								element={true ? <Navigate to="/dashboard" /> : <Login onLogin={handleLogin} />}
+								element={<Login onLogin={handleLogin} />}
 							/>
 							<Route
 								path="/signup"
@@ -96,6 +104,10 @@ function App() {
 							<Route
 								path="/history"
 								element={true ? <History gardenId={1} /> : <Navigate to="/login" />}
+							/>
+							<Route
+								path="/profile"
+								element={true ? <Profile /> : <Navigate to="/login" />}
 							/>
 							<Route path="*" element={<Navigate to="/login" />} />
 						</Routes>

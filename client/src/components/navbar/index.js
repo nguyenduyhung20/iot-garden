@@ -31,8 +31,8 @@ function Navbar({ onLogOut }) {
       icon: faMobile,
     },
     {
-      heading: "CUSTOMER",
-      link: "/users",
+      heading: "PROFILE",
+      link: "/profile",
       icon: faUser,
     },
     {
