@@ -14,15 +14,18 @@ import PumpSetting from "./components/PumpSetting";
 import History from "./components/History";
 import ThresholdAlert from "./components/ThresholdAlert";
 
-
+const POLLING_INTERVAL = 5000;
 
 
 function App() {
 	const [message, setMessage] = useState("");
-	const [loggedIn, setLoggedIn] = useState(null);
+	const [loggedIn, setLoggedIn] = useState(() => !!localStorage.getItem('token'));
+
+	// Garden id of current user
+	const gardenId = parseInt(localStorage.getItem('gardenId'));
 
 	// Logout function then, will replace it when i have better solution
-	const logout = () => {
+	const handleLogout = () => {
 		localStorage.removeItem("token");
 		setLoggedIn(false);
 	}
@@ -44,14 +47,64 @@ function App() {
 	useEffect(() => {
 		if (loggedIn) {
 			const intervalID = setInterval(() => {
-				axios
-					.get("/latest-message")
+				axios.get("/latest-message")
 					.then(response => setMessage(response.data.message))
-					.catch(error => console.log(error));
-			}, 5000);
+					.catch(console.log);
+			}, POLLING_INTERVAL);
 			return () => clearInterval(intervalID);
 		}
 	}, [loggedIn]);
+
+	// Component for render routes
+	const RenderRoutes = () => {
+		return (
+			<Routes>
+				<Route
+					path="/login"
+					element={<Login onLogin={handleLogin} />}
+				/>
+				<Route
+					path="/signup"
+					element={<SignUp />}
+				/>
+				{loggedIn ? (
+					<>
+						<Route
+							path="/dashboard"
+							element={<HomeScreen message={message} />}
+						/>
+						<Route
+							path="/control"
+							element={<Control />}
+						/>
+						<Route
+							path="/infomation"
+							element={<InfomationTree message={message} />}
+						/>
+						<Route
+							path="/pumpSetting"
+							element={<PumpSetting message={message} />}
+						/>
+						<Route
+							path="/pumpWater"
+							element={<Pump />}
+						/>
+						<Route
+							path="/history"
+							element={<History gardenId={1} />}
+						/>
+						<Route
+							path="/profile"
+							element={<Profile />}
+						/>
+					</>
+				) : (
+					<Route path="*" element={<Navigate to="/login" />} />
+				)}
+			</Routes>
+		)
+	};
+
 
 	return (
 		<Router>
@@ -63,57 +116,11 @@ function App() {
 				)}
 			</div> */}
 			<div className={classes["main-content"]}>
-				<ThresholdAlert message={message} gardenId={1} />
-				{true && <NavBar onLogOut={logout} />}
-				{true !== null && (
-					<div className={classes["routes-content"]}>
-
-						<Routes>
-
-							<Route
-								path="/dashboard"
-								element={true ? <HomeScreen message={message} /> : <Navigate to="/login" />}
-							/>
-
-							<Route
-								path="/control"
-								element={true ? <Control /> : <Navigate to="/login" />}
-							/>
-							<Route
-								path="/infomation"
-								element={true ? <InfomationTree message={message} /> : <Navigate to="/login" />}
-							/>
-
-							<Route
-								path="/pumpSetting"
-								element={true ? <PumpSetting message={message} /> : <Navigate to="/login" />}
-							/>
-
-							<Route
-								path="/pumpWater"
-								element={true ? <Pump /> : <Navigate to="/login" />}
-							/>
-							<Route
-								path="/login"
-								element={<Login onLogin={handleLogin} />}
-							/>
-							<Route
-								path="/signup"
-								element={<SignUp />}
-							/>
-							<Route
-								path="/history"
-								element={true ? <History gardenId={1} /> : <Navigate to="/login" />}
-							/>
-							<Route
-								path="/profile"
-								element={true ? <Profile /> : <Navigate to="/login" />}
-							/>
-							<Route path="*" element={<Navigate to="/login" />} />
-						</Routes>
-					</div>
-
-				)}
+				<ThresholdAlert message={message} gardenId={gardenId} />
+				< NavBar onLogOut={handleLogout} />
+				<div className={classes["routes-content"]}>
+					<RenderRoutes />
+				</div>
 			</div>
 		</Router>
 
