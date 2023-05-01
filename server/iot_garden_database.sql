@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 30, 2023 lúc 12:23 PM
+-- Thời gian đã tạo: Th5 01, 2023 lúc 07:50 PM
 -- Phiên bản máy phục vụ: 10.4.27-MariaDB
 -- Phiên bản PHP: 8.1.12
 
@@ -45,7 +45,6 @@ CREATE TABLE `tbl_admin` (
 CREATE TABLE `tbl_condition` (
   `condition_ID` int(11) NOT NULL,
   `condition_Amdat` varchar(255) NOT NULL,
-  `condition_Light` varchar(255) NOT NULL,
   `condition_Temp` varchar(255) NOT NULL,
   `condition_Humid` varchar(255) NOT NULL,
   `condition_GardenID` int(11) NOT NULL
@@ -55,8 +54,8 @@ CREATE TABLE `tbl_condition` (
 -- Đang đổ dữ liệu cho bảng `tbl_condition`
 --
 
-INSERT INTO `tbl_condition` (`condition_ID`, `condition_Amdat`, `condition_Light`, `condition_Temp`, `condition_Humid`, `condition_GardenID`) VALUES
-(1, '30', '50', '60', '30', 1);
+INSERT INTO `tbl_condition` (`condition_ID`, `condition_Amdat`, `condition_Temp`, `condition_Humid`, `condition_GardenID`) VALUES
+(1, '30', '35', '30', 1);
 
 -- --------------------------------------------------------
 
@@ -474,7 +473,7 @@ CREATE TABLE `tbl_garden` (
 --
 
 INSERT INTO `tbl_garden` (`garden_ID`, `garden_OwnerID`, `garden_Location`, `garden_Status`, `garden_Name`, `garden_Description`, `garden_Area`, `garden_Image`) VALUES
-(1, 1, 'Default location', NULL, 'Default Garden', 'Default', '0.00', NULL);
+(1, 1, 'Sau nhà, trên ban công tầng 10', 'Active', 'Little Garden', 'Ein geliebter kleiner Garten', '100.00', 'None');
 
 -- --------------------------------------------------------
 
@@ -905,7 +904,7 @@ CREATE TABLE `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`user_ID`, `user_Name`, `user_Username`, `user_Password`, `user_Role`, `user_Address`, `user_Email`, `user_Phone`) VALUES
-(1, 'User', 'user', '$2b$10$6ySwiTwe/HeJA3a6nzrzVePh.kijR.TRbm236BKWZBoBPi0ej5F/O', 'USER', NULL, NULL, NULL);
+(1, 'Duy Hung', 'user', '$2b$10$6ySwiTwe/HeJA3a6nzrzVePh.kijR.TRbm236BKWZBoBPi0ej5F/O', 'USER', 'KTX khu A ĐHQG, Linh Trung, Thủ Đức', 'duy.hung@gmail.com', '123-456-78901');
 
 -- --------------------------------------------------------
 
@@ -1025,7 +1024,26 @@ INSERT INTO `tbl_water_pump` (`water_pump_ID`, `water_pump_Time`, `water_pump_Va
 (98, '2023-04-29 23:52:26', '0', 1),
 (99, '2023-04-29 23:54:08', '0', 1),
 (100, '2023-04-29 23:54:28', '0', 1),
-(101, '2023-04-29 23:56:44', '0', 1);
+(101, '2023-04-29 23:56:44', '0', 1),
+(102, '2023-04-30 23:10:19', '0', 1),
+(103, '2023-05-01 08:25:43', '1', 1),
+(104, '2023-05-01 08:25:53', '0', 1),
+(105, '2023-05-01 08:56:43', '1', 1),
+(106, '2023-05-01 08:56:45', '1', 1),
+(107, '2023-05-01 08:56:46', '1', 1),
+(108, '2023-05-01 08:56:46', '1', 1),
+(109, '2023-05-01 08:56:48', '1', 1),
+(110, '2023-05-01 08:56:49', '1', 1),
+(111, '2023-05-01 08:56:53', '0', 1),
+(112, '2023-05-01 08:56:55', '0', 1),
+(113, '2023-05-01 08:56:56', '0', 1),
+(114, '2023-05-01 08:56:56', '0', 1),
+(115, '2023-05-01 08:56:58', '0', 1),
+(116, '2023-05-01 08:56:59', '0', 1),
+(117, '2023-05-01 10:27:11', '0', 1),
+(118, '2023-05-01 10:34:07', '0', 1),
+(119, '2023-05-01 10:35:13', '1', 1),
+(120, '2023-05-01 10:35:23', '0', 1);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -1135,7 +1153,7 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT cho bảng `tbl_water_pump`
 --
 ALTER TABLE `tbl_water_pump`
-  MODIFY `water_pump_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+  MODIFY `water_pump_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
