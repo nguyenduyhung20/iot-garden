@@ -1,5 +1,39 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
+import {
+    faPlus,
+    faMinus
+} from '@fortawesome/free-solid-svg-icons'
+
+const ThresholdSetting = ({ title, value, setValue }) => {
+    return (
+        <div className='bg-white shadow rounded-lg p-4 mb-6 transition-all duration-500 ease-in-out transform hover:scale-105'>
+            <h2 className='font-semibold text-lg mb-2'>{title}</h2>
+            <div className='flex items-center space-x-3'>
+                <div className='text-gray-700'>Giá trị thiết lập: {value}</div>
+                <div onClick={() => setValue(Math.max(0, value - 1))}
+                    className='px-2 py-1 bg-green-200 text-green-700 rounded-full flex items-center'>
+                    <FontAwesomeIcon icon={faMinus} />
+                </div>
+                <div onClick={() => setValue(Math.min(100, value + 1))}
+                    className='px-2 py-1 bg-green-200 text-green-700 rounded-full flex items-center'>
+                    <FontAwesomeIcon icon={faPlus} />
+                </div>
+            </div>
+        </div>
+    )
+}
+
+const Button = ({ onClick, text, color }) => {
+    const baseClass = "px-5 py-2 rounded-lg transition-all duration-500 ease-in-out transform hover:scale-105";
+    const colorClass = `bg-${color}-200 text-${color}-700`;
+    return (
+        <button onClick={onClick} className={`${baseClass} ${colorClass}`}>
+            {text}
+        </button>
+    );
+};
 
 const PumpSetting = () => {
     const location = useLocation().state.location
@@ -29,81 +63,21 @@ const PumpSetting = () => {
         alert('Update thành công')
     }
     return (
-        <div style={{ display: 'flex', margin: "0 0 0 50px", height: "100%" }}>
+        <div className='flex w-full max-w-5xl h-full space-x-6 justify-around ml-10'>
 
-            <div style={{ height: "100%" }}>
-                <h1>{location.title}</h1>
-                <img style={{ height: "350px" }} src={location.link} />
+            <div className='h-full'>
+                <h1 className='font-semibold text-3xl'>{location.title}</h1>
+                <img className='h-96 rounded-lg shadow-lg' src={location.link} alt=''/>
             </div>
-            <div style={{ height: "100%" }} >
+            <div className='h-full mt-4' >
                 <div style={{ width: "100px", height: "80px" }}></div>
-                <div>
-                    <h2 style={{ margin: "20px" }}>
-                        Nhiệt độ
-                    </h2>
-                    <div style={{ display: "flex" }}>
-                        <div style={{ padding: "0px 12px", cursor: "pointer", marginLeft: "20px" }}>Giá trị thiết lập: {nhietdo}</div>
+                <ThresholdSetting title="Nhiệt độ" value={nhietdo} setValue={setNhietdo} />
+                <ThresholdSetting title="Độ ẩm đất" value={doam} setValue={setDoam} />
+                <ThresholdSetting title="Độ ẩm không khí" value={doamoxi} setValue={setDoamoxi} />
 
-                        <div onClick={() => {
-                            if (nhietdo === 0) {
-                                setNhietdo(0)
-                            } else {
-                                setNhietdo(nhietdo - 1)
-                            }
-
-                        }} style={{ padding: "0px 12px", cursor: "pointer", backgroundColor: "#b9b5b5bd", borderRadius: "3px" }}>-</div>
-                        <div onClick={() => {
-                            setNhietdo(nhietdo + 1)
-                        }} style={{ padding: "0px 12px", cursor: "pointer", margin: "0 15px", borderRadius: "3px", backgroundColor: "#b9b5b5bd" }}>+</div>
-                    </div>
-
-
-                </div>
-                <div>
-                    <h2 style={{ margin: "20px" }}>
-                        Độ ẩm đất
-                    </h2>
-                    <div style={{ display: "flex" }}>
-                        <div style={{ padding: "0px 12px", cursor: "pointer", marginLeft: "20px" }}>Giá trị thiết lập: {doam}</div>
-                        <div onClick={() => {
-                            if (doam === 0) {
-                                setDoam(0)
-                            } else {
-                                setDoam(doam - 1)
-                            }
-
-                        }} style={{ padding: "0px 12px", cursor: "pointer", backgroundColor: "#b9b5b5bd", borderRadius: "3px" }}>-</div>
-                        <div onClick={() => {
-                            setDoam(doam + 1)
-                        }} style={{ padding: "0px 12px", cursor: "pointer", margin: "0 15px", borderRadius: "3px", backgroundColor: "#b9b5b5bd" }}>+</div>
-                    </div>
-
-
-                </div>
-                <div>
-                    <h2 style={{ margin: "20px" }}>
-                        Độ ẩm không khí
-                    </h2>
-                    <div style={{ display: "flex" }}>
-                        <div style={{ padding: "0px 12px", cursor: "pointer", marginLeft: "20px" }}>Giá trị thiết lập: {doamoxi}</div>
-                        <div onClick={() => {
-                            if (doamoxi === 0) {
-                                setDoamoxi(0)
-                            } else {
-                                setDoamoxi(doamoxi - 1)
-                            }
-
-                        }} style={{ padding: "0px 12px", cursor: "pointer", backgroundColor: "#b9b5b5bd", borderRadius: "3px" }}>-</div>
-                        <div onClick={() => {
-                            setDoamoxi(doamoxi + 1)
-                        }} style={{ padding: "0px 12px", cursor: "pointer", margin: "0 15px", borderRadius: "3px", backgroundColor: "#b9b5b5bd" }}>+</div>
-                    </div>
-
-
-                </div>
-                <div style={{ display: "flex", marginTop: "54px", marginLeft: "12px" }}>
-                    <div onClick={handleReset} style={{ padding: "10px 30px", cursor: "pointer", backgroundColor: "#b9b5b5bd", borderRadius: "3px", margin: "0 5px" }}>Reset</div>
-                    <div onClick={handleUpdate} style={{ padding: "10px 30px", cursor: "pointer", backgroundColor: "#b9b5b5bd", borderRadius: "3px", margin: "0 5px" }}>Update</div>
+                <div className='flex justify-around mt-4'>
+                    <Button onClick={handleReset} text="Reset" color="gray" />
+                    <Button onClick={handleUpdate} text="Update" color="blue" />
                 </div>
             </div>
         </div>
