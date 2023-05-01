@@ -13,6 +13,7 @@ import Pump from "./components/Pump";
 import PumpSetting from "./components/PumpSetting";
 import History from "./components/History";
 import ThresholdAlert from "./components/ThresholdAlert";
+import Garden from "./components/Garden";
 
 const POLLING_INTERVAL = 5000;
 
@@ -103,12 +104,17 @@ function App() {
 								/>
 								<Route
 									path="/history"
-									element={<History gardenId={1} />}
+									element={<History gardenId={gardenId} />}
 								/>
 								<Route
 									path="/profile"
 									element={<Profile />}
 								/>
+								<Route
+									path="/garden"
+									element={<Garden />}
+								/>
+								<Route path="*" element={<Navigate to="/dashboard" />} />
 							</>
 						) : (
 							<Route path="*" element={<Navigate to="/login" />} />
