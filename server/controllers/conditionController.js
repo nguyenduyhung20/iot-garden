@@ -3,7 +3,6 @@ conditionModel = require('../models/conditionModel');
 const createDefaultCondition = (gardenId) => {
     const defaultCondition = {
         amdat: 'default value',
-        light: 'default value',
         temp: 'default value',
         humid: 'default value',
         gardenId: gardenId

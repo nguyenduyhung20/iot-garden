@@ -1,11 +1,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import {
     faPlus,
     faMinus
 } from '@fortawesome/free-solid-svg-icons';
 import Button from './Button';
+import axios from 'axios';
 
 const ThresholdSetting = ({ title, value, setValue }) => {
     return (
@@ -26,35 +27,76 @@ const ThresholdSetting = ({ title, value, setValue }) => {
     )
 }
 
+const parseNumericString = (str) => {
+    const num = parseFloat(str);
+    return isNaN(num) ? 0 : num;
+};
 
 
 const PumpSetting = () => {
     const location = useLocation().state.location
+    const gardenId = parseInt(localStorage.getItem('gardenId'));
 
-    const arr = JSON.parse(localStorage.getItem('infortree')) ? JSON.parse(localStorage.getItem('infortree')) : []
-    const currentItem = arr.find(item => item.location && item.location.title === location.title) || { nhietdo: 0, doam: 0, doamoxi: 0 }
+    // const arr = JSON.parse(localStorage.getItem('infortree')) ? JSON.parse(localStorage.getItem('infortree')) : []
+    // const currentItem = arr.find(item => item.location && item.location.title === location.title) || { nhietdo: 0, doam: 0, doamoxi: 0 }
+    // const [nhietdo, setNhietdo] = useState(currentItem.nhietdo)
+    // const [doam, setDoam] = useState(currentItem.doam)
+    // const [doamoxi, setDoamoxi] = useState(currentItem.doamoxi)
 
-    const [nhietdo, setNhietdo] = useState(currentItem.nhietdo)
-    const [doam, setDoam] = useState(currentItem.doam)
-    const [doamoxi, setDoamoxi] = useState(currentItem.doamoxi)
-    const handleReset = () => {
-        setNhietdo(0)
-        setDoam(0)
-        setDoamoxi(0)
-        const filterArr = arr.filter(item => {
-            if (item.location) {
-                return item.location.title !== location.title
-            }
-        })
-        localStorage.setItem('infortree', JSON.stringify(filterArr))
-        alert(`Xóa thành công thông tin loại cây ${location.title}`)
-    }
+    const [nhietdo, setNhietdo] = useState(null);
+    const [doam, setDoam] = useState(null);
+    const [doamoxi, setDoamoxi] = useState(null);
 
+    useEffect(() => {
+        if (nhietdo === null || doam === null || doamoxi === null) {
+            axios.get(`/api/v1/condition/${gardenId}`)
+                .then(response => {
+                    const conditionData = response.data[0];
+                    console.log('this is condition data:', conditionData);
+                    const tempNhietdo = parseNumericString(conditionData.condition_Temp);
+                    const tempDoam = parseNumericString(conditionData.condition_Amdat);
+                    const tempDoamoxi = parseNumericString(conditionData.condition_Humid);
+
+                    console.log('Parsed values:', tempNhietdo, tempDoam, tempDoamoxi);
+
+                    setNhietdo(tempNhietdo);
+                    setDoam(tempDoam);
+                    setDoamoxi(tempDoamoxi);
+
+                    console.log('====================================');
+                    console.log('This is garden response: ', response.data);
+                    console.log('====================================');
+                })
+                .catch(console.log);
+        }
+
+    }, [nhietdo, doam, doamoxi, gardenId]);
+
+    console.log('This is after fetch: ', nhietdo, doam, doamoxi);
     const handleUpdate = () => {
-        arr.push({ nhietdo, doam, doamoxi, location })
-        localStorage.setItem('infortree', JSON.stringify(arr))
-        alert('Update thành công')
-    }
+
+        axios.put(`/api/v1/condition/${gardenId}`, {
+            condition_Temp: nhietdo.toString(),
+            condition_Amdat: doam.toString(),
+            condition_Humid: doamoxi.toString()
+        })
+            .then(response => {
+                alert('Update thành công')
+            })
+            .catch(error => {
+                console.error('Error updating data: ', error);
+            })
+    };
+
+    const handleReset = () => {
+        setNhietdo(0);
+        setDoam(0);
+        setDoamoxi(0);
+
+        handleUpdate();
+        alert(`Xóa thành công thông tin loại cây ${location.title}`);
+    };
+
     return (
         <div className='w-full max-w-5xl bg-white bg-opacity-90 p-6 rounded-lg shadow-lg justify-around mx-auto mt-5'>
             <div className='h-full '>

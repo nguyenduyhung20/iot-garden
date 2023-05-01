@@ -15,13 +15,12 @@ const executeQuery = (query, params) => {
 
 const createCondition = (data) => {
     const query = `INSERT INTO tbl_condition
-    (condition_Amdat, condition_Light, condition_Temp, condition_Humid, condition_GardenID)
+    (condition_Amdat, condition_Temp, condition_Humid, condition_GardenID)
     VALUES (?, ?, ?, ?, ?)`;
     return executeQuery(query, [
-        data.amdat,
-        data.light,
-        data.temp,
-        data.humid,
+        data.condition_Amdat,
+        data.condition_Temp,
+        data.condition_Humid,
         data.gardenId
     ]);
 };
@@ -32,15 +31,15 @@ const getConditionByGardenId = (gardenId) => {
 }
 
 const updateCondition = (data) => {
+    console.log('Received data', data);
     const query = `UPDATE tbl_condition
-    SET condition_Amdat = ?, condition_Light = ?, condition_Temp = ?, condition_Humid = ?
+    SET condition_Amdat = ?, condition_Temp = ?, condition_Humid = ?
     WHERE condition_GardenID = ?
     `;
     return executeQuery(query, [
-        data.amdat,
-        data.light,
-        data.temp,
-        data.humid,
+        data.condition_Amdat,
+        data.condition_Temp,
+        data.condition_Humid,
         data.gardenId
     ]);
 };
