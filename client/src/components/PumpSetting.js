@@ -4,7 +4,8 @@ import { useLocation } from 'react-router-dom'
 import {
     faPlus,
     faMinus
-} from '@fortawesome/free-solid-svg-icons'
+} from '@fortawesome/free-solid-svg-icons';
+import Button from './Button';
 
 const ThresholdSetting = ({ title, value, setValue }) => {
     return (
@@ -25,15 +26,7 @@ const ThresholdSetting = ({ title, value, setValue }) => {
     )
 }
 
-const Button = ({ onClick, text, color }) => {
-    const baseClass = "px-5 py-2 rounded-lg transition-all duration-500 ease-in-out transform hover:scale-105";
-    const colorClass = `bg-${color}-200 text-${color}-700`;
-    return (
-        <button onClick={onClick} className={`${baseClass} ${colorClass}`}>
-            {text}
-        </button>
-    );
-};
+
 
 const PumpSetting = () => {
     const location = useLocation().state.location
@@ -63,21 +56,23 @@ const PumpSetting = () => {
         alert('Update thành công')
     }
     return (
-        <div className='flex w-full max-w-5xl h-full space-x-6 justify-around ml-10'>
-
-            <div className='h-full'>
-                <h1 className='font-semibold text-3xl'>{location.title}</h1>
-                <img className='h-96 rounded-lg shadow-lg' src={location.link} alt=''/>
+        <div className='w-full max-w-5xl bg-white bg-opacity-90 p-6 rounded-lg shadow-lg justify-around mx-auto mt-5'>
+            <div className='h-full '>
+                <h1 className='font-bold text-4xl text-center text-gray-800'>{location.title}</h1>
             </div>
-            <div className='h-full mt-4' >
-                <div style={{ width: "100px", height: "80px" }}></div>
-                <ThresholdSetting title="Nhiệt độ" value={nhietdo} setValue={setNhietdo} />
-                <ThresholdSetting title="Độ ẩm đất" value={doam} setValue={setDoam} />
-                <ThresholdSetting title="Độ ẩm không khí" value={doamoxi} setValue={setDoamoxi} />
+            <div className='h-full flex items-center space-x-6' >
+                <div className='w-1/2'>
+                    <img className='w-full h-auto rounded-lg shadow-lg' src={location.link} alt='' />
+                </div>
 
-                <div className='flex justify-around mt-4'>
-                    <Button onClick={handleReset} text="Reset" color="gray" />
-                    <Button onClick={handleUpdate} text="Update" color="blue" />
+                <div className='w-1/2 flex flex-col mt-6 p-4'>
+                    <ThresholdSetting title="Nhiệt độ" value={nhietdo} setValue={setNhietdo} />
+                    <ThresholdSetting title="Độ ẩm đất" value={doam} setValue={setDoam} />
+                    <ThresholdSetting title="Độ ẩm không khí" value={doamoxi} setValue={setDoamoxi} />
+                    <div className='flex space-x-3 mx-auto'>
+                        <Button onClick={handleReset} text="Reset" color="gray" />
+                        <Button onClick={handleUpdate} text="Update" color="green" />
+                    </div>
                 </div>
             </div>
         </div>

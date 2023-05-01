@@ -1,38 +1,40 @@
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import classes from './InfomationTree.module.scss'
+// import classes from './InfomationTree.module.scss'
+import Button from './Button'
 function InfomationTree({ message }) {
   const location = useLocation().state
 
-  
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
   const handlePump = () => {
     navigate('/pumpWater', { state: { location } })
   }
+
   const handleSetting = () => {
     navigate('/pumpSetting', { state: { location } })
   }
-  return (
-    <div className={classes.mainInfomationTree}>
-      <div className={classes.mainInfomationTree_title}>
-        <h1>{location.title}</h1>
-      </div>
-      <div className={classes.mainInfomationTree_container}>
-        <img width={500} src={location.link} />
 
-        <div style={{ marginLeft: "100px", height: 350, display: "flex", flexDirection: "column", justifyContent: "space-between" }} className={classes.mainInfomationTree_containers}>
-          <h5>Nhiệt độ {message.air_temperature} độ C</h5>
-          <h5>Độ ẩm đất {message.air_humid} %</h5>
-          <h5>Độ ẩm không khí {message.soil_moisture} %</h5>
-          <div onClick={() => { handleSetting() }} style={{ cursor: "pointer", backgroundColor: "#7edd6c", borderRadius: "5px", padding: "10px", color: "black", fontSize: 20 }}>Setting Parameter</div>
-          <div onClick={() => { handlePump() }} style={{ cursor: "pointer", backgroundColor: "#7edd6c", borderRadius: "5px", padding: "10px", color: "black", fontSize: 20 }}>Pump water</div>
+  return (
+    <div className='w-full max-w-5xl bg-white bg-opacity-90 p-6 rounded-lg shadow-lg space-y-6 mx-auto mt-5 overflow-hidden'>
+      <div className='text-center'>
+        <h1 className='text-4xl font-bold text-gray-800'>{location.title}</h1>
+      </div>
+      <div className='flex items-center space-x-6'>
+        <div className='w-1/2'>
+          <img className='w-full h-auto rounded-lg shadow-lg' src={location.link} alt='' />
+        </div>
+        <div className='w-1/2 flex flex-col space-y-4 p-4'>
+          <h5 className='font-medium text-lg text-gray-700'>Nhiệt độ: <span className='font-bold'>{message.air_temperature} độ C</span></h5>
+          <h5 className='font-medium text-lg text-gray-700'>Độ ẩm đất: <span className='font-bold'>{message.air_humid} %</span></h5>
+          <h5 className='font-medium text-lg text-gray-700'>Độ ẩm không khí: <span className='font-bold'>{message.soil_moisture} %</span></h5>
+          <Button onClick={handleSetting} text="Setting Parameter" color="green" />
+          <Button onClick={handlePump} text="Pump water" color="green" />
         </div>
       </div>
     </div>
+  );
 
-
-  )
 }
 
 export default InfomationTree

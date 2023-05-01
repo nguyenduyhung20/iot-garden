@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
-import classes from './Control.module.scss'
+// import classes from './Control.module.scss'
+import Button from './Button';
 function Control() {
     const img = [{
         link: "/img/anh/img_design/bap.png",
@@ -55,30 +56,35 @@ function Control() {
         timePump: "10 Phút",
         run: "Tưới"
     }]
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
     const handleNavigate = (link, title, temperature, humidity, humidityOxi, timePump, run) => {
         navigate('/infomation', { state: { link, title, temperature, humidity, humidityOxi, timePump, run } })
-
     }
-    const handledelete = () => {
-        localStorage.clear('datePump')
+
+    const handleDelete = () => {
+        localStorage.removeItem('datePump')
         setTimeout(() => {
             alert('Xóa thành công')
         }, 1500)
-
     }
+
     return (
-        <div className={classes.main_Control}>
-            <h1 className={classes.main_Control_title}>CÁC CÂY HIỆN CÓ TRONG VƯỜN</h1>
-            <div className={classes.main_Control_container}>
-                {img.map((item, index) => (<div key={index}>
-                    <div onClick={() => { handleNavigate(item.link, item.title, item.temperature, item.humidity, item.humidityOxi, item.timePump, item.run) }} style={{ position: "relative", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-                        <img style={{ cursor: "pointer", width: "300px", height: "200px", margin: "0px 10px" }} src={item.link} />
-                        <h1 style={{ margin: "0 0 15px 0" }}>{item.title}</h1>
-                    </div>
-                </div>))}
+        <div className="m-6">
+            <h1 className="text-3xl font-bold mb-6 text-center">CÁC CÂY HIỆN CÓ TRONG VƯỜN</h1>
+            <div className="flex flex-wrap justify-center items-center gap-4">
+                {img.map((item, index) => (
+                    <div key={index} className='flex flex-col items-center cursor-pointer space-y-4  transform transition-transform duration-500 hover:scale-105'>
+                        <div
+                            onClick={() => { handleNavigate(item.link, item.title, item.temperature, item.humidity, item.humidityOxi, item.timePump, item.run) }} style={{ position: "relative", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+                            <img className='w-72 h-48 rounded-lg shadow-lg' src={item.link} alt=''/>
+                            <h1 className='font-semibold text-xl'>{item.title}</h1>
+                        </div>
+                    </div>))}
             </div>
-            <div onClick={handledelete} style={{ backgroundColor: "green", padding: "12px", borderRadius: "15px", cursor: "pointer", color: "white", fontSize: "20px" }}>Xóa toàn bộ thời gian tưới nước</div>
+            <div onClick={handleDelete} className='flex justify-center items-center mt-8'>
+                <Button onClick={handleDelete} text={"Xóa toàn bộ thời gian tưới nước"} color="green"/>
+                </div>
         </div>
     )
 }
