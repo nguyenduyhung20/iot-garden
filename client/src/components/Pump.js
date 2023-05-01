@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
-import classes from './InfomationTree.module.scss'
+import React from 'react'
+import { useLocation } from 'react-router-dom'
+// import classes from './InfomationTree.module.scss'
 import moment from 'moment'
 import axios from 'axios';
 const Pump = () => {
   const location = useLocation().state.location
-
 
   const DD = moment().format('DD')
   const MM = moment().format('MM')
@@ -29,7 +28,6 @@ const Pump = () => {
       } catch (error) {
         console.error("Error starting pump");
       }
-
     }
 
     startPump();
@@ -37,32 +35,30 @@ const Pump = () => {
     window.location.reload()
   }
 
-
-
   return (
-    <div className={classes.mainInfomationTree}>
-      <div className={classes.mainInfomationTree_title}>
-        <h1>{location.title}</h1>
+    <div className='w-full max-w-5xl bg-white bg-opacity-90 p-6 rounded-lg shadow-lg space-y-6 mx-auto mt-5 overflow-hidden'>
+      <div className='text-center'>
+        <h1 className='text-4xl font-bold text-gray-800'>{location.title}</h1>
       </div>
-      <div className={classes.mainInfomationTree_container}>
-        <img width={500} src={location.link} />
-
-        <div style={{ marginLeft: "100px", height: 350, display: "flex", flexDirection: "column" }} className={classes.mainInfomationTree_containers}>
-          <h5>Pump Water</h5>
-          <h5 style={{ fontWeight: "400" }}>Thời gian tưới <div style={{ display: "inline-block", padding: "5px 8px", borderRadius: "5px", backgroundColor: "#80808075", color: "#494848" }}>{location.timePump}</div></h5>
-          <div onClick={(e) => { handlePump(e) }} style={{ margin: "14px 0", width: "50px", textAlign: "center", cursor: "pointer", backgroundColor: "#7edd6c", borderRadius: "5px", padding: "7px 10px", color: "black", fontSize: 20 }}>{location.run}</div>
-          <h5 style={{ fontSize: "20px", fontWeight: "400" }}>Lịch sử tưới</h5>
+      <div className='flex items-center space-x-6'>
+        <div className='w-1/2'>
+          <img className='w-full h-auto rounded-lg shadow-lg' src={location.link} alt='' />
+        </div>
+        <div className='w-1/2 flex flex-col space-y-4 p-4'>
+          <h5 className='font-medium text-lg text-gray-700'>Pump Water</h5>
+          <h5 className='font-medium text-lg text-gray-700'>Thời gian tưới <span className='inline-block px-3 py-1 rounded-md bg-gray-300 text-gray-800'>{location.timePump}</span></h5>
+          <div onClick={(e) => { handlePump(e) }} className='my-2 w-20 text-center cursor-pointer bg-green-400 rounded-md py-2 text-black text-xl'>{location.run}</div>
+          <h5 className='font-medium text-lg text-gray-700'>Lịch sử tưới</h5>
           {pumpD.filter(item => item.type === location.title).slice(0, 5).map((item, index) => (
-            <div key={index}>
+            <div key={index} className='text-gray-800'>
               {item.date}
             </div>
           ))}
         </div>
       </div>
     </div>
+  );
 
-
-  )
 }
 
-export default Pump
+export default Pump;
