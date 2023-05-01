@@ -1,10 +1,10 @@
 // History.js
 import React from "react";
-import { Layout, Typography } from 'antd';
+import { Layout } from 'antd';
 import DataDisplay from "./DataDisplay";
 
 const { Content } = Layout;
-const { Title } = Typography;
+
 
 const History = ({ gardenId }) => {
     return (

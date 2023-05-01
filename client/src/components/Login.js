@@ -23,7 +23,10 @@ function Login({ onLogin }) {
 
 				// Need user id here
 				const tokenObject = jwtDecode(token);
-				console.log('This is user id: ', tokenObject.id);
+
+				// Save user id on local storage
+				localStorage.setItem('userId', tokenObject.id);
+				console.log('This is user id: ', localStorage.getItem('userId'));
 
 				// Fetch garden by owner id
 				return axios.get(`/api/v1/gardens/owner/${tokenObject.id}`, {

@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import axios from 'axios';
-import { message, notification } from "antd";
+import { notification } from "antd";
 
 const ThresholdAlert = ({ latestMessage, gardenId }) => {
 
