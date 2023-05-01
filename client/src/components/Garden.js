@@ -4,6 +4,7 @@ import AnimatedTabPanel from "./AnimatedTabPanel";
 import CustomTabHeader from "./CustomTabHeader";
 import axios from "axios";
 import GardenOverview from "./GardenOverview";
+import GardenEdit from './GardenEdit';
 
 const Garden = function () {
     const [garden, setGarden] = useState(null);
@@ -43,6 +44,10 @@ const Garden = function () {
                     <Tab.Panels className={"mt-2"}>
                         <AnimatedTabPanel>
                             <GardenOverview gardenDetails={gardenDetails} garden={garden}/>
+                        </AnimatedTabPanel>
+
+                        <AnimatedTabPanel>
+                            <GardenEdit gardenDetails={gardenDetails} garden={garden} setGarden={setGarden}/>
                         </AnimatedTabPanel>
                     </Tab.Panels>
                 </Tab.Group>

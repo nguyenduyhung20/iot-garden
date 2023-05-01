@@ -9,19 +9,6 @@ import CustomTabHeader from './CustomTabHeader';
 
 
 const Profile = React.memo(function () {
-
-    // This is for testing
-    // const [user, setUser] = useState({
-    //     user_Username: 'user',
-    //     user_Name: 'John Doe',
-    //     user_Email: 'john.doe@example.com',
-    //     user_Phone: '123-456-7890',
-    //     user_Address: '123 Main St, Anytown, USA',
-    //     user_Role: 'user',
-    //     notifications: true,
-    //     siteTheme: 'light',
-    // });
-
     const [user, setUser] = useState(null);
 
     const userId = parseInt(localStorage.getItem('userId'));
