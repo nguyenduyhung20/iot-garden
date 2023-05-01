@@ -18,7 +18,7 @@ const ProfileDetails = function ({ userDetails, user, setUser }) {
 
   return (
     <>
-      <div className="backdrop-filter  bg-opacity-30 bg-blue-200 text-gray-800 p-3 font-semibold flex justify-between items-center rounded-lg shadow-lg border border-blue-300 transition-colors duration-200 hover:bg-blue-300 hover:text-white">
+      <div className="backdrop-filter  bg-opacity-30 bg-blue-200 text-gray-800 p-3 mb-3 font-semibold flex justify-between items-center rounded-lg shadow-lg border border-blue-300 transition-colors duration-200 hover:bg-blue-300 hover:text-white">
         <span className="text-2xl tracking-tight font-extrabold">Edit Profile</span>
       </div>
       <form onSubmit={handleSubmit} className="space-y-4">
