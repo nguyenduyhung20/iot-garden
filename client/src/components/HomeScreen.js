@@ -1,60 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
-import Graph from "./graph";
-import images from "../assets/images";
-import classes from "../App.module.scss";
+import React, { useRef, useState } from "react";
 import Chart from "./Chart/index.js";
 import Profile from "./Profile";
-import anime from "animejs";
-import DataDisplay from "./DataDisplay";
-// const ControlsData = ({ message }) => {
-//   const controlsData = [
-//     {
-//       img: images.temp,
-//       name: "Nhiệt độ",
-//       num: message.air_temperature,
-//     },
-//     {
-//       img: images.humid,
-//       name: "Độ ẩm",
-//       num: message.air_humid,
-//     },
-//     {
-//       img: images.humid,
-//       name: "Độ ẩm đất",
-//       num: message.soil_moisture,
-//     },
-//     {
-//       img: images.user,
-//       name: "User",
-//       num: 0,
-//     },
-//   ];
-
-//   return (
-//     <div className={classes["control-container"]}>
-//       {controlsData.map((data) => (
-//         <Control image={data.img} num={data.num} name={data.name} />
-//       ))}
-//     </div>
-//   );
-// };
-
-// const GraphsData = () => {
-//   const graphsData = ["NHIỆT ĐỘ", "ĐỘ ẨM", "ĐỘ ẨM ĐẤT"];
-
-//   return (
-//     <div className={classes["graph-container"]}>
-//       <div className={classes["graph-content"]}>
-//         <img className={classes["image-item"]} src={images.gr_temp} alt="" />
-//       </div>
-//       <div className={classes.style}>
-//         {graphsData.map((data) => (
-//           <Graph name={data} />
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
 
 
 function HomeScreen({ message }) {
@@ -66,71 +12,60 @@ function HomeScreen({ message }) {
     return item ? item : { nhietdo: 30, doam: 50, doamoxi: 30 }
   }
 
-  // useEffect(() => {
-  //   const threshold = getThreshold('NHIỆT ĐỘ')
-  //   if (message.air_temperature > threshold.nhietdo) {
-  //     alert('NHIỆT ĐỘ đang vượt quá giới hạn')
-  //   }
-  // }, [message.air_temperature])
-
-  // useEffect(() => {
-  //   const threshold = getThreshold('ĐỘ ẨM')
-  //   if (message.air_humid > threshold.doam) {
-  //     alert('ĐỘ ẨM đang vượt quá giới hạn')
-  //   }
-  // }, [message.air_humid])
-
-  // useEffect(() => {
-  //   const threshold = getThreshold('ĐỘ ẨM ĐẤT')
-  //   if (message.soil_moisture < threshold.doamoxi) {
-  //     alert('ĐỘ ẨM ĐẤT đang dưới mức giới hạn')
-  //   }
-  // }, [message.soil_moisture])
-
-
   const img = [
-    { link: '/img/temp.png', title: "NHIỆT ĐỘ" }, { link: '/img/humid.jpg', title: "ĐỘ ẨM" },
-    { link: '/img/light.jpg', title: "ĐỘ ẨM ĐẤT" }, { link: '/img/user.jpg', title: "User" }
+    { link: '/img/temp.png', title: "NHIỆT ĐỘ" },
+    { link: '/img/humid.jpg', title: "ĐỘ ẨM" },
+    { link: '/img/light.jpg', title: "ĐỘ ẨM ĐẤT" },
+    { link: '/img/user.jpg', title: "User" }
   ]
-  const handleProfile = useRef(null)
-  const handleChart = useRef(null)
 
+  const handleProfile = useRef(null);
+  const handleChart = useRef(null);
+
+  const renderCardContent = (item) => {
+    switch (item.title) {
+      case "NHIỆT ĐỘ":
+        return `${message.air_temperature} (M: ${getThreshold(item.title).nhietdo})`;
+      case "ĐỘ ẨM":
+        return `${message.air_humid} (M: ${getThreshold(item.title).doam})`;
+      case "ĐỘ ẨM ĐẤT":
+        return `${message.soil_moisture} (M: ${getThreshold(item.title).doamoxi})`;
+      case "User":
+        return "0";
+      default:
+        return "";
+    }
+  }
+
+  const renderCards = () => {
+    return img.map((item, index) => (
+      <div
+        key={index}
+        className="flex items-center bg-white rounded-lg p-6 relative cursor-pointer border-2 border-blue-200 shadow-lg transform transition-all duration-200 hover:scale-105"
+        onClick={() => { setHandleTitle(item.title); }}
+      >
+        <div className="flex flex-1 flex-col" >
+          <div className="flex flex-col">
+            <h1 className="text-lg text-center font-semibold text-gray-700">{item.title}</h1>
+            <span className="text-lg text-center font-bold text-blue-500">{renderCardContent(item)}</span>
+          </div>
+          <div className="text-center text-sm mt-2 text-gray-600 w-full">UPDATE 40s</div>
+        </div>
+        <img className="w-24 h-24 rounded-lg" src={item.link} alt="" />
+      </div>
+    ))
+  };
 
   return (
 
-    <div style={{ width: "80vw" }}>
-
-      <div>
-
-        <h1>WELCOME TO GREEN GARDEN!</h1>
-        <div style={{ display: "flex", width: "100%" }}>
-          {img.map((item, index) => (
-
-            <div key={index} style={{ margin: "0 25px", backgroundColor: "#FFFFFF", position: "relative" }}>
-              <div style={{ position: "relative" }}>
-                <div onClick={() => { setHandleTitle(item.title) }} className={classes.opa} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                  <h1 style={{ fontSize: "13px" }}>{item.title}</h1>
-
-                  <img style={{ width: "100px", cursor: 'pointer', margin: "0 12px", borderRadius: "10px", }} src={item.link} />
-                </div>
-                <span style={{ position: "absolute", top: "54%", left: "16%", fontWeight: 600, fontSize: "15px" }}>
-                  {/* {item.title === 'NHIỆT ĐỘ' ? message.air_temperature : item.title === 'ĐỘ ẨM' ? message.air_humid : item.title === 'ĐỘ ẨM ĐẤT' ? message.soil_moisture : item.title === 'User' ? '0' : ''} */}
-                  {item.title === 'NHIỆT ĐỘ' ? `${message.air_temperature} (M: ${getThreshold(item.title).nhietdo})` : ''}
-                  {item.title === 'ĐỘ ẨM' ? `${message.air_humid} (M: ${getThreshold(item.title).doam})` : ''}
-                  {item.title === 'ĐỘ ẨM ĐẤT' ? `${message.soil_moisture} (M: ${getThreshold(item.title).doamoxi})` : ''}
-                  {item.title === 'User' ? '0' : ''}
-                </span>
-              </div>
-              <div style={{ textAlign: "center" }}>UPDATE 40s</div>
-            </div>
-          ))}
-
+    <div className="w-11/12 mx-auto my-10">
+      <div className="mb-10">
+        <h1 className="text-4xl fold-bold text-center mb-10 text-gray-800">WELCOME TO GREEN GARDEN!</h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {renderCards()}
         </div>
-
-        <div style={{ width: "80vw", height: "40px" }}></div>
       </div>
       {titleHandle === 'Use' ? <div ref={handleProfile}>< Profile /></div> : <div><Chart ref={handleChart} titleHandle={titleHandle} /></div>}
-
     </div>
   );
 }
