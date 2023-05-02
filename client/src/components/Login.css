@@ -1,0 +1,6 @@
+.background-image {
+    background-image: url('./image/green_background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }

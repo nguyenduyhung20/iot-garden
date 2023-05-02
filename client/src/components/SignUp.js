@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Input from './Input';
+import './Login.css'
 
 function SignUp(props) {
 	const [name, setName] = useState('');
@@ -21,7 +22,7 @@ function SignUp(props) {
 	};
 
 	return (
-		<div className="flex items-center justify-center h-screen bg-green-100">
+		<div className="flex items-center justify-center h-screen background-image">
 			<div className="w-full max-w-md bg-white p-8 rounded-md shadow-md border-2 border-blue-200 transition-color duration-500 hover:border-green-300">
 				<h1 className="font-bold text-3xl mb-6 text-center">Sign Up</h1>
 				<form className="space-y-6" onSubmit={handleSubmit}>

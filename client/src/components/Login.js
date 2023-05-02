@@ -4,7 +4,7 @@ import axios from "axios";
 import Input from "./Input";
 import CheckBox from "./CheckBox";
 import jwtDecode from 'jwt-decode';
-
+import './Login.css';
 
 
 function Login({ onLogin }) {
@@ -53,7 +53,7 @@ function Login({ onLogin }) {
 	}
 
 	return (
-		<div className="flex items-center justify-center h-screen bg-green-100">
+		<div className={`flex items-center justify-center h-screen background-image`}>
 			<div className="w-full max-w-md bg-white p-8 rounded-md shadow-md border-2 border-blue-200 transition-color duration-500 hover:border-green-300">
 				<h1 className="font-bold text-3xl mb-6 text-center">Login</h1>
 				<form className="space-y-6" onSubmit={handleSubmit}>
