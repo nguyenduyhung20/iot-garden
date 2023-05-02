@@ -1,10 +1,30 @@
 # IoT Garden
 
-This project is a web application that displays information from the sensor on the homepage. It is built using React, Node.js, and MySQL with XAMPP, and follows the MVC pattern.
+IoT Garden is a web application that allows users to monitor and control garden conditions through data from various sensors. It's designed for both gardening enthusiasts and professionals who want to leverage the power of technology to make their gardening experience smarter and more efficient.
+
 
 ## Project Overview
 
 ![](https://github.com/duyhung8a2/iot-garden/blob/master/screenshot/project.gif)
+
+## Technologies
+
+This project is built with a range of technologies to provide a seamless user experience and efficient performance. These include:
+
+- Frontend: React.js
+- Backend: Node.js, Express.js
+- Database: MySQL with XAMPP
+- Pattern: Model-View-Controller (MVC)
+
+## Database Setup
+
+To set up the database, follow these steps:
+
+1. Start your XAMPP control panel and turn on the MySQL module.
+2. Open the MySQL admin in your browser.
+3. Create a new database named "iot_garden".
+4. Import the `iot_garden_database.sql` file located in the `server` directory.
+
 
 ## Getting Started
 
