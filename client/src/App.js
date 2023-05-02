@@ -56,8 +56,6 @@ function App() {
 		}
 	}, [loggedIn]);
 
-
-
 	return (
 		<Router>
 			{/* <div>
