@@ -4,7 +4,7 @@ This project is a web application that displays information from the sensor on t
 
 ## Project Overview
 
-![](https://github.com/iot-garden/screenshot/project.gif)
+![](https://github.com/duyhung8a2/iot-garden/screenshot/project.gif)
 
 ## Getting Started
 
