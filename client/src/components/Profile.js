@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Tab } from '@headlessui/react';
 import ProfileDetails from './ProfileDetails';
 import axios from 'axios';
@@ -6,6 +6,11 @@ import ProfileOverview from './ProfileOverview';
 import ProfileSiteSetting from './ProfileSiteSetting'
 import AnimatedTabPanel from './AnimatedTabPanel';
 import CustomTabHeader from './CustomTabHeader';
+
+console.log('====================================');
+console.log('Loaded once');
+console.log('====================================');
+
 
 
 const Profile = React.memo(function () {
@@ -22,14 +27,23 @@ const Profile = React.memo(function () {
         { label: 'Phone', value: 'user_Phone' },
     ];
 
+    const initialRender = useRef(true);
     useEffect(() => {
-        // Fetch user when component mount
-        if (!isNaN(userId) && user === null) {
-            axios.get(`/api/v1/users/${userId}`)
-                .then(response => {
-                    setUser(response.data);
-                })
-                .catch(console.log);
+        if (initialRender.current) {
+            initialRender.current = false;
+        } else {
+            // Fetch user when component mount
+            console.log('This is condition to fetch: ', !isNaN(userId), user === null);
+            if (!isNaN(userId) && user === null) {
+                axios.get(`/api/v1/users/${userId}`)
+                    .then(response => {
+                        console.log('====================================');
+                        console.log('This is user response data: ', response.data);
+                        console.log('====================================');
+                        setUser(response.data);
+                    })
+                    .catch(console.log);
+            }
         }
     }, [userId, user]);
 

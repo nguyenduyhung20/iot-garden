@@ -1,4 +1,5 @@
-const mysql = require('mysql');
+require('dotenv').config();
+const mysql = require('mysql2');
 const config = require('../config')
 
 const connection = mysql.createConnection(config.db);
@@ -10,11 +11,5 @@ connection.connect((err)=>{
         console.log('Connected to database');
     }
 });
-
-// connection.query('SELECT * FROM tbl_user', (err, rows, fields) => {
-//     if (err) throw err
-  
-//     console.log('The solution is: ', rows[0])
-// });
 
 module.exports = connection;

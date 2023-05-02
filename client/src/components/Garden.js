@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Tab } from '@headlessui/react';
 import AnimatedTabPanel from "./AnimatedTabPanel";
 import CustomTabHeader from "./CustomTabHeader";
@@ -6,7 +6,7 @@ import axios from "axios";
 import GardenOverview from "./GardenOverview";
 import GardenEdit from './GardenEdit';
 
-const Garden = function () {
+const Garden = React.memo(function () {
     const [garden, setGarden] = useState(null);
 
     const userId = parseInt(localStorage.getItem('userId'));
@@ -20,16 +20,21 @@ const Garden = function () {
         { label: 'Image', value: 'garden_Image' },
     ]
 
+    const initialRender = useRef(true);
     useEffect(() => {
-        if (!isNaN(userId) && garden === null) {
-            axios.get(`/api/v1/gardens/${userId}`)
-                .then(response => {
-                    console.log('====================================');
-                    console.log('This is garden response data: ', response.data);
-                    console.log('====================================');
-                    setGarden(response.data);
-                })
-                .catch(console.log);
+        if (initialRender.current) {
+            initialRender.current = false;
+        } else {
+            if (!isNaN(userId) && garden === null) {
+                axios.get(`/api/v1/gardens/${userId}`)
+                    .then(response => {
+                        console.log('====================================');
+                        console.log('This is garden response data: ', response.data);
+                        console.log('====================================');
+                        setGarden(response.data);
+                    })
+                    .catch(console.log);
+            }
         }
     }, [userId, garden]);
 
@@ -43,17 +48,17 @@ const Garden = function () {
                     </Tab.List>
                     <Tab.Panels className={"mt-2"}>
                         <AnimatedTabPanel>
-                            <GardenOverview gardenDetails={gardenDetails} garden={garden}/>
+                            <GardenOverview gardenDetails={gardenDetails} garden={garden} />
                         </AnimatedTabPanel>
 
                         <AnimatedTabPanel>
-                            <GardenEdit gardenDetails={gardenDetails} garden={garden} setGarden={setGarden}/>
+                            <GardenEdit gardenDetails={gardenDetails} garden={garden} setGarden={setGarden} />
                         </AnimatedTabPanel>
                     </Tab.Panels>
                 </Tab.Group>
             </div>
         </>
     );
-}
+});
 
 export default Garden;

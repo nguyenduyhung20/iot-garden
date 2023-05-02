@@ -70,21 +70,24 @@ function Control() {
     }
 
     return (
-        <div className="m-6">
-            <h1 className="text-3xl font-bold mb-6 text-center">CÁC CÂY HIỆN CÓ TRONG VƯỜN</h1>
-            <div className="flex flex-wrap justify-center items-center gap-4">
+        <div className="m-10 w-4/5 mx-auto bg-green-50 p-10 rounded-lg">
+            <h1 className="text-4xl font-bold mb-10 text-center">CÁC CÂY HIỆN CÓ TRONG VƯỜN</h1>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
                 {img.map((item, index) => (
-                    <div key={index} className='flex flex-col items-center cursor-pointer space-y-4  transform transition-transform duration-500 hover:scale-105'>
-                        <div
-                            onClick={() => { handleNavigate(item.link, item.title, item.temperature, item.humidity, item.humidityOxi, item.timePump, item.run) }} style={{ position: "relative", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-                            <img className='w-72 h-48 rounded-lg shadow-lg' src={item.link} alt=''/>
-                            <h1 className='font-semibold text-xl'>{item.title}</h1>
+                    <div key={index}
+                        className='flex flex-col items-center cursor-pointer bg-white rounded-lg shadow-lg border-2 border-blue-200 transform transition-all duration-200 hover:scale-105 hover:border-green-500'
+                        onClick={() => { handleNavigate(item.link, item.title, item.temperature, item.humidity, item.humidityOxi, item.timePump, item.run) }}
+                    >
+                        <div className='aspect-w-3 aspect-h-2 w-full'>
+                            <img className='mt-4 mx-auto w-72 h-48 rounded-lg' src={item.link} alt='' />
                         </div>
+                        
+                        <h1 className='m-5 font-semibold text-xl'>{item.title}</h1>
                     </div>))}
             </div>
             <div onClick={handleDelete} className='flex justify-center items-center mt-8'>
-                <Button onClick={handleDelete} text={"Xóa toàn bộ thời gian tưới nước"} color="green"/>
-                </div>
+                <Button onClick={handleDelete} text={"Xóa toàn bộ thời gian tưới nước"} color="green" />
+            </div>
         </div>
     )
 }

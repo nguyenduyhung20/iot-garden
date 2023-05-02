@@ -7,8 +7,7 @@
     background-Color: #def6e8;
 
     h1 {
-        color: #052868;
-        margin: 2rem;
+        color: #000000;
     }
 }
 
@@ -24,24 +23,24 @@
     margin: 0.5em;
 }
 
-.graph-container {
-    display: flex;
-    margin-Top: 5rem;
+// .graph-container {
+//     display: flex;
+//     margin-Top: 5rem;
 
-    .graph-content {
-        width: 50vw;
-        height: 40vh;
-        display: flex;
-        justify-Content: center;
-        align-Items: center;
-    }
+//     .graph-content {
+//         width: 50vw;
+//         height: 40vh;
+//         display: flex;
+//         justify-Content: center;
+//         align-Items: center;
+//     }
 
-    .image-item {
-        width: 48vw;
-        height: 45vh;
-    }
+//     .image-item {
+//         width: 48vw;
+//         height: 45vh;
+//     }
 
-}
+// }
 
 .opa {
     opacity: 0.7;
