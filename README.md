@@ -1,6 +1,6 @@
 # IoT Garden
 
-This project is a web application that displays information from the sensor on the homepage. It is built using React, Node.js, and MySQL, and follows the MVC pattern.
+This project is a web application that displays information from the sensor on the homepage. It is built using React, Node.js, and MySQL with XAMPP, and follows the MVC pattern.
 
 ## Getting Started
 
@@ -50,49 +50,116 @@ To get started with this project, follow these steps:
 
 This project is structured as follows:
 ```
-my-project/  
-├── client/  
-│   ├── src/  
-│   │   ├── components/  
-│   │   ├── App.js  
-│   │   ├── index.js  
-│   │   └── ...  
-│   ├── public/  
-│   ├── package.json  
-│   └── ...  
-├── server/  
-│   ├── models/  
-│   │   └── db.js  
-│   ├── routes/  
-│   │   ├── user.js  
-│   │   └── ...  
-│   ├── controllers/   
-│   ├── server.js  
-│   ├── package.json  
-│   └── ...  
-└── package.json  
+client
+src
+ ┣ assets
+ ┃ ┗ images
+ ┃ ┃ ┣ graph_temp.png
+ ┃ ┃ ┣ humid.jpg
+ ┃ ┃ ┣ index.js
+ ┃ ┃ ┣ light.jpg
+ ┃ ┃ ┣ temp.png
+ ┃ ┃ ┗ user.jpg
+ ┣ components
+ ┃ ┣ hook
+ ┃ ┃ ┗ useWindowHeight.js
+ ┃ ┣ image
+ ┃ ┃ ┣ bapcai.png
+ ┃ ┃ ┣ logout.png
+ ┃ ┃ ┣ reset.png
+ ┃ ┃ ┣ setvalue.png
+ ┃ ┃ ┗ update.png
+ ┃ ┣ navbar
+ ┃ ┃ ┣ index.js
+ ┃ ┃ ┣ LOGO.png
+ ┃ ┃ ┗ navbar.module.scss
+ ┃ ┣ style
+ ┃ ┃ ┣ Control.module.scss
+ ┃ ┃ ┣ InfomationTree.module.scss
+ ┃ ┃ ┗ setting.css
+ ┃ ┣ AnimatedTabPanel.js
+ ┃ ┣ Button.js
+ ┃ ┣ Chart.js
+ ┃ ┣ CheckBox.js
+ ┃ ┣ Control.js
+ ┃ ┣ CustomTabHeader.js
+ ┃ ┣ DataDisplay.js
+ ┃ ┣ Garden.js
+ ┃ ┣ GardenEdit.js
+ ┃ ┣ GardenOverview.js
+ ┃ ┣ GraphButton.js
+ ┃ ┣ History.js
+ ┃ ┣ HomeScreen.js
+ ┃ ┣ InfomationTree.js
+ ┃ ┣ Input.js
+ ┃ ┣ LatestMessage.js
+ ┃ ┣ Login.js
+ ┃ ┣ Profile.js
+ ┃ ┣ ProfileDetails.js
+ ┃ ┣ ProfileOverview.js
+ ┃ ┣ ProfileSiteSetting.js
+ ┃ ┣ Pump.js
+ ┃ ┣ PumpSetting.js
+ ┃ ┣ Setting.js
+ ┃ ┣ SignUp.js
+ ┃ ┣ ThresholdAlert.js
+ ┃ ┗ UserData.js
+ ┣ App.js
+ ┣ App.module.scss
+ ┣ App.test.js
+ ┣ index.css
+ ┣ index.js
+ ┣ logo.svg
+ ┣ reportWebVitals.js
+ ┗ setupTests.js
+
+server
+ ┣ controllers
+ ┃ ┣ authController.js
+ ┃ ┣ conditionController.js
+ ┃ ┣ gardenController.js
+ ┃ ┣ mqttController.js
+ ┃ ┣ sensorController.js
+ ┃ ┗ userController.js
+ ┣ middlewares
+ ┃ ┣ authMiddleware.js
+ ┃ ┗ document.txt
+ ┣ models
+ ┃ ┣ conditionModel.js
+ ┃ ┣ db.js
+ ┃ ┣ gardenModel.js
+ ┃ ┣ mqttModel.js
+ ┃ ┣ sensorModel.js
+ ┃ ┗ userModel.js
+ ┣ routes
+ ┃ ┣ authRouter.js
+ ┃ ┣ conditionRouter.js
+ ┃ ┣ gardenRouter.js
+ ┃ ┣ mqttRouter.js
+ ┃ ┣ sensorRouter.js
+ ┃ ┗ userRouter.js
+ ┣ config.js
+ ┣ iot-garden-database-source.sql
+ ┣ iot_garden_database.sql
+ ┣ server.js
+ ┗ testmqtt.js
 ```
 
-Here's a brief explanation of each directory and file:
+Here's a brief explanation of important directory and file:
 
 - `client/`: This directory contains the React client-side code.
   - `src/`: This directory contains the source code for the React app.
     - `components/`: This directory contains the reusable UI components.
     - `App.js`: This file is the root component of the React app.
     - `index.js`: This file is the entry point of the React app.
-  - `public/`: This directory contains the static assets (e.g. images, fonts) for the React app.
-  - `package.json`: This file contains the dependencies and scripts for the React app.
 
 - `server/`: This directory contains the Node.js server-side code.
-  - `models/`: This directory contains the database models.
-    - `db.js`: This file contains the database connection code.
-  - `routes/`: This directory contains the route handlers.
-    - `user.js`: This file contains the route handler for the `/user` endpoint.
-  - `controllers/`: This directory contains the business logic for the app.
-  - `server.js`: This file is the entry point of the Node.js app.
-  - `package.json`: This file contains the dependencies and scripts for the Node.js app.
+- `controllers/`: Contains all the logic for handling requests and sending responses.
+- `middlewares/`: Contains middleware functions used across the server.
+- `models/`: Contains all the data models used in the application.
+- `routes/`: Contains all the route definitions for the server.
+- `server.js`: The main file which bootstraps the server.
 
-- `package.json`: This file contains the dependencies and scripts for the entire project.
 
 ## Contributing
 
