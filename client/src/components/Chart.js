@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Chart as ChartJS, LineElement, PointElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js'
 import { Line } from 'react-chartjs-2'
-import GraphButton from '../GraphButton'
+import GraphButton from './GraphButton'
 import moment from 'moment/moment';
 ChartJS.register(
     LineElement, PointElement, CategoryScale, LinearScale, Tooltip, Legend

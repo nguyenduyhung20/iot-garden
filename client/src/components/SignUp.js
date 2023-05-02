@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Input from './Input';
-import './SignUp.scss';
 
 function SignUp(props) {
 	const [name, setName] = useState('');

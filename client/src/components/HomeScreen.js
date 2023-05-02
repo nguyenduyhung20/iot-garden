@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import Chart from "./Chart/index.js";
+import Chart from "./Chart";
 
 function HomeScreen({ message }) {
   const [titleHandle, setHandleTitle] = useState()
