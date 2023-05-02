@@ -60,12 +60,12 @@ function HomeScreen({ message }) {
 
     <div className="w-11/12 mx-auto my-10">
       <div className="mb-10">
-        <h1 className="text-4xl fold-bold text-center mb-10 text-gray-800">WELCOME TO GREEN GARDEN!</h1>
+        <h1 className="text-4xl font-bold text-center mb-10 text-gray-800">WELCOME TO GREEN GARDEN!</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {renderCards()}
         </div>
       </div>
-      {titleHandle === 'Use' ? <div ref={handleProfile}>< Profile /></div> : <div><Chart ref={handleChart} titleHandle={titleHandle} /></div>}
+      {<div><Chart ref={handleChart} titleHandle={titleHandle} /></div>}
     </div>
   );
 }

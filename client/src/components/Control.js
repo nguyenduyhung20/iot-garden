@@ -70,9 +70,9 @@ function Control() {
     }
 
     return (
-        <div className="m-6">
-            <h1 className="text-3xl font-bold mb-6 text-center">CÁC CÂY HIỆN CÓ TRONG VƯỜN</h1>
-            <div className="flex flex-wrap justify-center items-center gap-4">
+        <div className="m-10">
+            <h1 className="text-4xl font-bold m-10 text-center">CÁC CÂY HIỆN CÓ TRONG VƯỜN</h1>
+            <div className="flex flex-wrap justify-center items-center gap-10">
                 {img.map((item, index) => (
                     <div key={index} className='flex flex-col items-center cursor-pointer space-y-4  transform transition-transform duration-500 hover:scale-105'>
                         <div
