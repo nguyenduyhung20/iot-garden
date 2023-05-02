@@ -4,7 +4,7 @@ import axios from "axios";
 import Input from "./Input";
 import CheckBox from "./CheckBox";
 import jwtDecode from 'jwt-decode';
-import './Login.scss';
+
 
 
 function Login({ onLogin }) {
@@ -34,17 +34,12 @@ function Login({ onLogin }) {
 						'Authorization': `Bearer ${token}`
 					}
 				})
-
 			})
 			.then(response => {
 				// Response is garden object, set garden id in local storage
 				const gardenId = response.data.garden_ID;
 				console.log('Type of gardenId: ', typeof (gardenId));
 				localStorage.setItem('gardenId', gardenId);
-
-				// Debug
-				// console.log('This is response of garden id fetch: ', response.data);
-				// console.log('This is gardenId in local storage: ', localStorage.getItem('gardenId'));
 
 				onLogin();
 				navigate('/dashboard')
@@ -56,32 +51,44 @@ function Login({ onLogin }) {
 		event.preventDefault()
 		navigate('/signup')
 	}
+
 	return (
-		<div className="login-container">
-			<h1 className="login-title">Login</h1>
-			<form className="login-form" onSubmit={handleSubmit}>
-				<Input
-					type="text"
-					value={username}
-					onChange={e => setUsername(e.target.value)}
-					label="Username: "
-				/>
-				<Input
-					type="password"
-					value={password}
-					onChange={e => setPassword(e.target.value)}
-					label="Password: "
-				/>
-				<CheckBox
-					checked={rememberMe}
-					onChange={e => setRememberMe(e.target.checked)}
-					label="Remember me:"
-				/>
-				<div className="login-actions">
-					<button className="sign-up-button" type="button" onClick={handleSignUp}>Sign Up</button>
-					<button className="login-button" type="submit">Login</button>
-				</div>
-			</form>
+		<div className="flex items-center justify-center h-screen bg-green-100">
+			<div className="w-full max-w-md bg-white p-8 rounded-md shadow-md border-2 border-blue-200 transition-color duration-500 hover:border-green-300">
+				<h1 className="font-bold text-3xl mb-6 text-center">Login</h1>
+				<form className="space-y-6" onSubmit={handleSubmit}>
+					<Input
+						type="text"
+						value={username}
+						onChange={e => setUsername(e.target.value)}
+						label="Username: "
+					/>
+					<Input
+						type="password"
+						value={password}
+						onChange={e => setPassword(e.target.value)}
+						label="Password: "
+					/>
+					<CheckBox
+						checked={rememberMe}
+						onChange={e => setRememberMe(e.target.checked)}
+						label="Remember me:"
+					/>
+					<div className="flex justify-between w-1/2 mx-auto">
+						<button className="py-2 px-4 bg-white border-2 border-blue-200 text-black rounded-md hover:bg-gray-300 hover:border-gray-400 transition-colors duration-200"
+							type="button" onClick={handleSignUp}
+						>
+							Sign Up
+						</button>
+						<button className="py-2 px-6 bg-white border-2 border-blue-200 text-black rounded-md hover:bg-green-400  hover:border-green-500 transition-colors duration-200"
+							type="submit"
+						>
+							Login
+						</button>
+					</div>
+				</form>
+			</div>
+
 		</div>
 	);
 };

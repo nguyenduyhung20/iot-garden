@@ -42,12 +42,12 @@ const Chart = ({ titleHandle }) => {
     return (
         <div className="flex flex-col lg:flex-row justify-around items-center lg:space-x-10">
             <div className="w-full lg:w-3/4">
-                <div className="w-full bg-white p-5 shadow-md rounded-md">
+                <div className="w-full bg-white p-5 shadow-md rounded-md border-2 border-blue-200 transition-color duration-200 hover:border-green-200">
                     <Line data={datas} />
                 </div>
 
                 <div className="text-center my-4 items-center">
-                    <h3 className="text-2xl font-bold border-1 border-gray-500 text-blue-500">{type}</h3>
+                    <h3 className="text-2xl font-bold border-1 border-gray-500 ">{type}</h3>
                 </div>
             </div>
             <div className="flex flex-col items-center space-y-4 w-full lg:w-1/4">
