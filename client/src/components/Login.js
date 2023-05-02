@@ -75,7 +75,7 @@ function Login({ onLogin }) {
 						label="Remember me:"
 					/>
 					<div className="flex justify-between w-1/2 mx-auto">
-						<button className="py-2 px-4 bg-white border-2 border-blue-200 text-black rounded-md hover:bg-green-300 hover:border-green-400 transition-colors duration-200"
+						<button className="py-2 px-4 bg-white border-2 border-blue-200 text-black rounded-md hover:bg-gray-300 hover:border-gray-400 transition-colors duration-200"
 							type="button" onClick={handleSignUp}
 						>
 							Sign Up

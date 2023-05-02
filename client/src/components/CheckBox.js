@@ -2,7 +2,7 @@ import React from "react";
 
 function Checkbox({ checked, onChange, label }) {
     return (
-        <div className="flex items-center justify-end mr-5">
+        <div className="flex items-center justify-center">
             <label className="text-lg text-blue-400">
                 {label}
             </label>
