@@ -1,7 +1,5 @@
 import React, { useRef, useState } from "react";
 import Chart from "./Chart/index.js";
-import Profile from "./Profile";
-
 
 function HomeScreen({ message }) {
   const [titleHandle, setHandleTitle] = useState()
@@ -19,7 +17,6 @@ function HomeScreen({ message }) {
     { link: '/img/user.jpg', title: "User" }
   ]
 
-  const handleProfile = useRef(null);
   const handleChart = useRef(null);
 
   const renderCardContent = (item) => {
