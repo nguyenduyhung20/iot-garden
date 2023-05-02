@@ -41,7 +41,7 @@ function HomeScreen({ message }) {
     return img.map((item, index) => (
       <div
         key={index}
-        className="flex items-center bg-white rounded-lg p-6 relative cursor-pointer border-2 border-blue-200 shadow-lg transform transition-all duration-200 hover:scale-105"
+        className="flex items-center bg-white rounded-lg p-6 relative cursor-pointer border-2 border-blue-200 shadow-lg transform transition-all duration-200 hover:scale-105 hover:border-green-500"
         onClick={() => { setHandleTitle(item.title); }}
       >
         <div className="flex flex-1 flex-col" >

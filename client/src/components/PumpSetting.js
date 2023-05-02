@@ -10,7 +10,7 @@ import axios from 'axios';
 
 const ThresholdSetting = ({ title, value, setValue }) => {
     return (
-        <div className='bg-white shadow rounded-lg p-4 mb-6 transition-all duration-500 ease-in-out transform hover:scale-105'>
+        <div className='bg-white border-2 border-blue-200 shadow rounded-lg p-4 mb-6 transition-all duration-500 ease-in-out transform hover:scale-105 hover:border-green-500'>
             <h2 className='font-semibold text-lg mb-2'>{title}</h2>
             <div className='flex items-center space-x-3'>
                 <div className='text-gray-700'>Giá trị thiết lập: {value}</div>
@@ -98,13 +98,13 @@ const PumpSetting = () => {
     };
 
     return (
-        <div className='w-full max-w-5xl bg-white bg-opacity-90 p-6 rounded-lg shadow-lg justify-around mx-auto mt-5'>
+        <div className='w-full max-w-6xl bg-white border-2 border-blue-200 p-6 rounded-lg shadow-lg justify-around mx-auto mt-5'>
             <div className='h-full '>
                 <h1 className='font-bold text-4xl text-center text-gray-800'>{location.title}</h1>
             </div>
             <div className='h-full flex items-center space-x-6' >
                 <div className='w-1/2'>
-                    <img className='w-full h-auto rounded-lg shadow-lg' src={location.link} alt='' />
+                    <img className='w-full h-auto rounded-lg shadow-lg border-2 border-blue-200' src={location.link} alt='' />
                 </div>
 
                 <div className='w-1/2 flex flex-col mt-6 p-4'>
