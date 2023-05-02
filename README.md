@@ -2,6 +2,10 @@
 
 This project is a web application that displays information from the sensor on the homepage. It is built using React, Node.js, and MySQL with XAMPP, and follows the MVC pattern.
 
+## Project Overview
+
+![](https://github.com/screenshot/project.gif)
+
 ## Getting Started
 
 To get started with this project, follow these steps:
