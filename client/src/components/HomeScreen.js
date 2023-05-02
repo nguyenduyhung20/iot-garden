@@ -1,14 +1,33 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Chart from "./Chart";
+import axios from "axios";
 
 function HomeScreen({ message }) {
-  const [titleHandle, setHandleTitle] = useState()
+  // message = {
+  //   air_temperature: "28.5", // degrees Celsius
+  //   air_humid: "45", // percentage
+  //   soil_moisture: "10" // arbitrary units
+  // };
+  const [titleHandle, setHandleTitle] = useState();
+  const [thresholds, setThresholds] = useState({ nhietdo: 30, doamoxi: 50, doam: 30 });
+  const gardenId = localStorage.getItem('gardenId');
 
-  const getThreshold = (title) => {
-    const arr = JSON.parse(localStorage.getItem('infortree')) || []
-    const item = arr.find(i => i.location.title === title)
-    return item ? item : { nhietdo: 30, doam: 50, doamoxi: 30 }
-  }
+  useEffect(() => {
+    const fetchThresholds = async () => {
+      try {
+        const response = await axios.get(`/api/v1/condition/${gardenId}`)
+        const condition = response.data[0]
+        setThresholds({
+          nhietdo: condition.condition_Temp,
+          doamoxi: condition.condition_Humid,
+          doam: condition.condition_Amdat
+        })
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchThresholds()
+  }, [gardenId])
 
   const img = [
     { link: '/img/temp.png', title: "NHIỆT ĐỘ" },
@@ -22,11 +41,11 @@ function HomeScreen({ message }) {
   const renderCardContent = (item) => {
     switch (item.title) {
       case "NHIỆT ĐỘ":
-        return `${message.air_temperature} (M: ${getThreshold(item.title).nhietdo})`;
+        return `${message.air_temperature} (<${thresholds.nhietdo})`;
       case "ĐỘ ẨM":
-        return `${message.air_humid} (M: ${getThreshold(item.title).doam})`;
+        return `${message.air_humid} (>${thresholds.doamoxi})`;
       case "ĐỘ ẨM ĐẤT":
-        return `${message.soil_moisture} (M: ${getThreshold(item.title).doamoxi})`;
+        return `${message.soil_moisture} (>${thresholds.doam})`;
       case "User":
         return "0";
       default:

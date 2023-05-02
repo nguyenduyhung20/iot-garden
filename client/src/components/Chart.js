@@ -17,11 +17,12 @@ const Chart = ({ titleHandle }) => {
     })))
 
     useEffect(() => {
-        setData(data.map((item, index) => ({
+        setData(prevData => prevData.map((item, index) => ({
             ...item,
             hidden: index !== dateNow
         })))
     }, [dateNow])
+    
 
     const handleType = e => {
         setType(e)
