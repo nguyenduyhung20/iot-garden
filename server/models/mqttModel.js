@@ -1,7 +1,8 @@
+require('dotenv').config();
 const mqtt = require('mqtt');
 const sensorController = require('../controllers/sensorController')
 
-const brokerName = 'Ohstem MQTT Broker'
+const brokerName = 'Broker Server';
 
 let latestMessages = {
 	pump: null,
@@ -17,18 +18,18 @@ let dhtBuffer = {
 
 
 console.log('Setting up username and password!');
-const client = mqtt.connect('mqtt://mqtt.ohstem.vn', {
-	username: 'IOTGARDEN222',
+const client = mqtt.connect(process.env.BROKER_LINK, {
+	username: process.env.FEED_NAME,
 	password: ''
 });
 
 console.log('Connecting to Ohstem!');
 client.on('connect', () => {
 	console.log('Connected to Ohstem MQTT Broker');
-	client.subscribe('IOTGARDEN222/feeds/V3'); // Air temperature
-	client.subscribe('IOTGARDEN222/feeds/V4'); // Air humid
-	client.subscribe('IOTGARDEN222/feeds/V5'); // Soil moisture
-	client.subscribe('IOTGARDEN222/feeds/V1'); // Pump
+	client.subscribe(process.env.FEED_AIR_TEMP_NAME); // Air temperature
+	client.subscribe(process.env.FEED_AIR_HUMID_NAME); // Air humid
+	client.subscribe(process.env.FEED_SOIL_MOISTURE_NAME); // Soil moisture
+	client.subscribe(process.env.FEED_PUMP_NAME); // Pump
 	console.log('Subcribed');
 });
 
