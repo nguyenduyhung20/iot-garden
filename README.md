@@ -78,29 +78,11 @@ client
 src
  ┣ assets
  ┃ ┗ images
- ┃ ┃ ┣ graph_temp.png
- ┃ ┃ ┣ humid.jpg
- ┃ ┃ ┣ index.js
- ┃ ┃ ┣ light.jpg
- ┃ ┃ ┣ temp.png
- ┃ ┃ ┗ user.jpg
  ┣ components
  ┃ ┣ hook
- ┃ ┃ ┗ useWindowHeight.js
  ┃ ┣ image
- ┃ ┃ ┣ bapcai.png
- ┃ ┃ ┣ logout.png
- ┃ ┃ ┣ reset.png
- ┃ ┃ ┣ setvalue.png
- ┃ ┃ ┗ update.png
  ┃ ┣ navbar
- ┃ ┃ ┣ index.js
- ┃ ┃ ┣ LOGO.png
- ┃ ┃ ┗ navbar.module.scss
  ┃ ┣ style
- ┃ ┃ ┣ Control.module.scss
- ┃ ┃ ┣ InfomationTree.module.scss
- ┃ ┃ ┗ setting.css
  ┃ ┣ AnimatedTabPanel.js
  ┃ ┣ Button.js
  ┃ ┣ Chart.js
@@ -129,44 +111,16 @@ src
  ┃ ┣ ThresholdAlert.js
  ┃ ┗ UserData.js
  ┣ App.js
- ┣ App.module.scss
- ┣ App.test.js
- ┣ index.css
- ┣ index.js
- ┣ logo.svg
- ┣ reportWebVitals.js
- ┗ setupTests.js
 
 server
  ┣ controllers
- ┃ ┣ authController.js
- ┃ ┣ conditionController.js
- ┃ ┣ gardenController.js
- ┃ ┣ mqttController.js
- ┃ ┣ sensorController.js
- ┃ ┗ userController.js
  ┣ middlewares
- ┃ ┣ authMiddleware.js
- ┃ ┗ document.txt
  ┣ models
- ┃ ┣ conditionModel.js
- ┃ ┣ db.js
- ┃ ┣ gardenModel.js
- ┃ ┣ mqttModel.js
- ┃ ┣ sensorModel.js
- ┃ ┗ userModel.js
  ┣ routes
- ┃ ┣ authRouter.js
- ┃ ┣ conditionRouter.js
- ┃ ┣ gardenRouter.js
- ┃ ┣ mqttRouter.js
- ┃ ┣ sensorRouter.js
- ┃ ┗ userRouter.js
  ┣ config.js
  ┣ iot-garden-database-source.sql
  ┣ iot_garden_database.sql
  ┣ server.js
- ┗ testmqtt.js
 ```
 
 Here's a brief explanation of important directory and file:
