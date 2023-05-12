@@ -198,4 +198,4 @@ If you would like to contribute to this project, please follow these steps:
 
 ## License
 
-This project is licensed under the MIT License. See the `LICENSE` file for more information.
+This project is intended solely for academic purposes as part of a university coursework project. Any commercial use or distribution of this project, or any part thereof, is strictly prohibited.
